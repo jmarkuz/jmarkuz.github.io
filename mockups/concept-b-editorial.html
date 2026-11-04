@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept B — Editorial (light) · Marian Kuziv</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5f2eb; --card:#fbf9f4; --ink:#17181c; --muted:#5d6068; --faint:#8b8d93; --rule:#d9d4c7; --rule-2:#c8c2b2;
+  --accent:#b23f1e; --accent-soft:#f1e1d9;
+  --serif:'Newsreader',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;height:72px;border-bottom:1px solid var(--rule)}
+.top .mk{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:-.01em}
+.top ul{display:flex;gap:32px;list-style:none;font-size:14px;color:var(--muted)}
+.top ul a:hover{color:var(--ink)}
+.top .r{display:flex;gap:18px;font-size:14px;align-items:center}
+.top .r a.u{border-bottom:1px solid var(--ink)}
+.pill{background:var(--ink);color:var(--paper);padding:9px 18px;border-radius:999px;font-size:14px;font-weight:500}
+/* hero */
+.hero{padding:88px 0 64px}
+.kicker{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:30px}
+h1{font-family:var(--serif);font-weight:500;font-size:132px;line-height:.94;letter-spacing:-.045em}
+h1 em{font-style:italic;color:var(--accent);font-weight:400}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:56px;align-items:start}
+.hero-grid p.lede{font-family:var(--serif);font-size:27px;line-height:1.4;color:var(--ink);letter-spacing:-.01em}
+.hero-grid p.lede span{color:var(--muted)}
+.meta{display:grid;gap:0;border-top:1px solid var(--ink)}
+.meta div{display:grid;grid-template-columns:140px 1fr;padding:13px 0;border-bottom:1px solid var(--rule);font-size:14.5px}
+.meta dt{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);padding-top:2px}
+.cta{display:flex;gap:12px;margin-top:30px;align-items:center}
+.btn{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:999px;font-size:15px;font-weight:500;border:1px solid var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);margin-top:72px}
+.stat{padding:26px 24px 26px 0}
+.stat+.stat{padding-left:24px;border-left:1px solid var(--rule)}
+.stat .n{font-family:var(--serif);font-size:58px;font-weight:500;letter-spacing:-.04em;line-height:1}
+.stat .n small{font-size:28px;color:var(--accent)}
+.stat .t{margin-top:10px;font-size:13.5px;color:var(--muted);line-height:1.45}
+.stat .t i{display:block;font-style:normal;font-family:var(--mono);font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.05em;margin-top:4px}
+/* sections */
+section{padding:104px 0 0}
+.sh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:14px;margin-bottom:48px}
+.sh .no{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+.sh h2{font-family:var(--serif);font-weight:500;font-size:44px;letter-spacing:-.03em;line-height:1.1}
+.sh h2 em{font-style:italic;color:var(--muted);font-weight:400}
+/* about */
+.about{display:grid;grid-template-columns:5fr 4fr;gap:80px}
+.about .txt p{font-size:18px;color:#34363c;margin-bottom:20px;line-height:1.7}
+.about .txt p:first-child:first-letter{font-family:var(--serif);font-size:72px;float:left;line-height:.8;padding:8px 12px 0 0;color:var(--accent);font-weight:500}
+.about .txt b{font-weight:600;color:var(--ink)}
+.strengths{border-top:1px solid var(--ink)}
+.strengths div{padding:20px 0;border-bottom:1px solid var(--rule)}
+.strengths h4{font-family:var(--serif);font-size:21px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+.strengths p{font-size:14.5px;color:var(--muted)}
+/* experience */
+.row{display:grid;grid-template-columns:200px 1fr 220px;gap:40px;padding:34px 0;border-bottom:1px solid var(--rule)}
+.row .co{font-family:var(--serif);font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.row .co small{display:block;font-family:var(--mono);font-size:12px;font-weight:400;color:var(--faint);letter-spacing:0;margin-top:8px;line-height:1.6}
+.row h3{font-size:17px;font-weight:600}
+.row h3 span{font-weight:400;color:var(--muted)}
+.row .sub{font-size:13.5px;color:var(--faint);margin:2px 0 12px}
+.row ul{list-style:none;display:grid;gap:8px}
+.row li{font-size:15px;color:#3a3c42;padding-left:18px;position:relative}
+.row li:before{content:"–";position:absolute;left:0;color:var(--accent)}
+.row li b{font-weight:600;color:var(--ink)}
+.row .stack{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.9;border-left:1px solid var(--rule);padding-left:20px}
+.row .stack b{display:block;font-weight:500;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;font-size:11px;margin-bottom:4px}
+/* skills */
+.sk{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:20px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.sk h4{font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--faint)}
+.sk div{font-family:var(--serif);font-size:21px;color:var(--ink);line-height:1.55;letter-spacing:-.005em}
+.sk div span{white-space:nowrap}
+.sk div span+span:before{content:"·";color:var(--accent);margin:0 11px}
+.sk.pers div{color:var(--muted);font-style:italic}
+.sk.pers h4{color:var(--accent)}
+/* projects */
+.pr{display:grid;grid-template-columns:7fr 5fr;gap:56px;padding:0 0 64px;align-items:center}
+.pr.flip{grid-template-columns:5fr 7fr}
+.pr.flip .pic{order:2}
+.pic{background:var(--card);border:1px solid var(--rule-2);border-radius:6px;overflow:hidden;box-shadow:0 24px 50px -28px rgba(40,30,10,.35);height:370px;position:relative}
+.pic img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+.pic.phone{display:flex;justify-content:center;background:#e9e4d6;height:370px}
+.pic.phone img{width:auto;height:112%;margin-top:22px;object-fit:contain;border-radius:14px;border:1px solid var(--rule-2)}
+.pr .kind{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.pr h3{font-family:var(--serif);font-size:44px;font-weight:500;letter-spacing:-.035em;margin:8px 0 14px;line-height:1.05}
+.pr p{font-size:16px;color:#3a3c42;margin-bottom:12px}
+.pr p b{color:var(--ink);font-weight:600}
+.pr ul{list-style:none;display:grid;gap:7px;margin:14px 0 18px;padding-top:14px;border-top:1px solid var(--rule)}
+.pr li{font-size:14.5px;color:var(--muted);padding-left:18px;position:relative}
+.pr li:before{content:"–";position:absolute;left:0;color:var(--accent)}
+.pr .st{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.9}
+.pr .lk{display:inline-block;margin-top:14px;font-size:14px;font-weight:500;border-bottom:1px solid var(--ink)}
+.also{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink)}
+.also div{padding:18px 24px 18px 0;font-size:14px;color:var(--muted)}
+.also div+div{padding-left:24px;border-left:1px solid var(--rule)}
+.also b{display:block;font-family:var(--mono);font-size:13px;color:var(--ink);font-weight:500;margin-bottom:3px}
+/* contact */
+.contact{margin-top:40px;background:var(--ink);color:var(--paper);padding:104px 0 56px}
+.contact .kicker{color:#e8a58f}
+.contact h2{font-family:var(--serif);font-weight:500;font-size:92px;line-height:1;letter-spacing:-.04em;max-width:980px}
+.contact h2 em{font-style:italic;color:#e8a58f;font-weight:400}
+.contact .cols{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:56px;align-items:end}
+.contact p{font-size:18px;color:#bdbab0;max-width:480px}
+.contact .mail{font-family:var(--serif);font-size:38px;letter-spacing:-.02em;border-bottom:1px solid #e8a58f;padding-bottom:6px;display:inline-block}
+.contact .lk{display:flex;gap:12px;margin-top:28px}
+.contact .btn{border-color:#55575d;color:var(--paper)}
+.contact .btn.primary{background:var(--accent);border-color:var(--accent)}
+.foot{display:flex;justify-content:space-between;margin-top:88px;padding-top:22px;border-top:1px solid #34363c;font-family:var(--mono);font-size:12px;color:#8b8d93}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="mk" href="#">Marian Kuziv</a>
+    <ul><li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li></ul>
+    <div class="r"><a class="u" href="#">GitHub</a><a class="u" href="#">LinkedIn</a><a class="pill" href="#contact">Contact</a></div>
+  </div>
+
+  <header class="hero">
+    <div class="kicker">Senior Java Software Engineer — Prague, CZ</div>
+    <h1>Marian<br><em>Kuziv.</em></h1>
+    <div class="hero-grid">
+      <div>
+        <p class="lede">I build the backend systems that other things depend on. <span>Ten years of Java and Spring Boot across banking, telecom and iGaming: microservices, messaging and the careful modernisation of legacy platforms.</span></p>
+        <div class="cta"><a class="btn primary" href="#contact">Get in touch</a><a class="btn" href="#projects">Selected projects</a></div>
+      </div>
+      <dl class="meta">
+        <div><dt>Expertise</dt><dd>Microservices &amp; distributed systems · Event-driven architecture · Performance &amp; reliability · Technical leadership</dd></div>
+        <div><dt>Domains</dt><dd>Investment banking · Telecom · iGaming</dd></div>
+        <div><dt>Currently</dt><dd>Senior Java Software Engineer at Atlaslive</dd></div>
+        <div><dt>Availability</dt><dd>Authorized to work in the Czech Republic; open to relocation</dd></div>
+      </dl>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">10<small>+</small></div><div class="t">years of Java backend engineering<i>Since 2016</i></div></div>
+      <div class="stat"><div class="n">10,000<small>+</small></div><div class="t">transactions a day, processed in guaranteed order<i>Luxoft · OTC derivatives</i></div></div>
+      <div class="stat"><div class="n">2h<small>→15m</small></div><div class="t">regulatory report generation time<i>Luxoft · Investment banking</i></div></div>
+      <div class="stat"><div class="n">80<small>%+</small></div><div class="t">test coverage on critical services<i>Atlaslive · iGaming</i></div></div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="sh"><span class="no">01 — About</span><h2>Owning the lifecycle, <em>from requirements to production.</em></h2></div>
+    <div class="about">
+      <div class="txt">
+        <p>I started in investment banking, building trade-processing and regulatory-reporting software for an international bank, then moved into telecom and iGaming platforms, where <b>integration-heavy backends</b> are the norm: carrier APIs, MDM/UEM providers, payment gateways and regulatory feeds.</p>
+        <p>My work centres on <b>microservices, messaging and data stores</b> (RabbitMQ, Kafka, PostgreSQL, Redis) and on the quieter parts that keep systems healthy: caching and query tuning, Kubernetes resource tuning, framework and runtime upgrades, and tests and documentation people actually use.</p>
+        <p>I have led a team of Java developers, run code reviews and technical design, and I am comfortable tracking down a production issue that crosses service boundaries.</p>
+      </div>
+      <div class="strengths">
+        <div><h4>Monolith to microservices</h4><p>Contributed to the platform transition at Brightfin, enabling independent service deployment.</p></div>
+        <div><h4>Technical lead</h4><p>Took over a Java team mid-project: guidance, design, code review, cross-team communication.</p></div>
+        <div><h4>Platform upgrades</h4><p>Java 21, RabbitMQ 4.0, Spring Boot updates; tuned Kubernetes HPA and resource allocation.</p></div>
+        <div><h4>Quality as a habit</h4><p>Unit, integration and end-to-end tests; Swagger specs; Confluence documentation.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sh"><span class="no">02 — Experience</span><h2>Four companies, <em>three industries.</em></h2></div>
+
+    <div class="row"><div class="co">Atlaslive<small>Apr 2024 — Present</small></div><div>
+      <h3>Senior Java Software Engineer <span>· iGaming</span></h3><div class="sub">Risk Management &amp; Retail Platform Modernization</div>
+      <ul>
+        <li>Modernised business-critical services across <b>Risk Management, Retail and Bonus</b> domains, including regulatory and external-provider integrations.</li>
+        <li>Migrated payments from a legacy setup to a <b>Payment Gateway</b> architecture; redesigned cross-service workflows and message routing to reduce coupling.</li>
+        <li>Improved latency and stability with <b>Redis caching</b> and query optimisation; moved services to <b>Java 21 and RabbitMQ 4.0</b>.</li>
+        <li>Raised test coverage to <b>80%+</b>; resolved production issues across service boundaries.</li>
+      </ul></div>
+      <div class="stack"><b>Stack</b>Java 21 · Spring Boot<br>RabbitMQ 4.0 · Redis<br>Kubernetes</div></div>
+
+    <div class="row"><div class="co">Brightfin<small>May 2021 — Jan 2024</small></div><div>
+      <h3>Senior Java Software Engineer <span>· Telecom</span></h3><div class="sub">TEM &amp; MDM/UEM platform · Java Software Engineer until Sep 2022</div>
+      <ul>
+        <li>Designed and built core microservices for <b>Telecom Expense Management and Unified Endpoint Management</b> with multiple carrier and MDM/UEM integrations.</li>
+        <li><b>Led a team of Java developers</b> after the previous lead left: guidance, technical design, code review.</li>
+        <li>Implemented MACD processes and device-enrollment workflows; supported <b>AWS, GCP and Azure</b> infrastructure with DevOps.</li>
+        <li>Set standards for tests, code review, Confluence docs and Swagger API specs.</li>
+      </ul></div>
+      <div class="stack"><b>Stack</b>Microservices<br>AWS · GCP · Azure<br>Swagger · Confluence</div></div>
+
+    <div class="row"><div class="co">MobiChord<small>Mar 2018 — May 2021</small></div><div>
+      <h3>Java Software Engineer <span>· Telecom</span></h3><div class="sub">MDM / telecom integration platform</div>
+      <ul>
+        <li>Built integrations with <b>AT&amp;T, Verizon, T-Mobile and Telus</b> and MDM providers <b>Jamf Pro, MobileIron, Microsoft Intune, MaaS360 and BlackBerry</b>.</li>
+        <li>Owned features from requirements to production support; built an inventory reporting service with catalog support.</li>
+        <li>Established unit, integration and end-to-end testing and CI/CD pipelines.</li>
+      </ul></div>
+      <div class="stack"><b>Focus</b>Carrier &amp; MDM APIs<br>Integration layer<br>CI/CD</div></div>
+
+    <div class="row"><div class="co">Luxoft<small>Apr 2016 — Mar 2018</small></div><div>
+      <h3>Junior Java Developer <span>· Banking</span></h3><div class="sub">Investment banking &amp; trade processing · started as a Java intern</div>
+      <ul>
+        <li>Built an event-driven order pipeline for OTC derivatives: <b>10,000+ transactions a day</b>, guaranteed ordering.</li>
+        <li>Automated multi-system data aggregation for regulatory reporting: <b>2 hours → 15 minutes</b>.</li>
+        <li>Integrated a CRM with the banking backend; fixed data-consistency issues through transaction management.</li>
+        <li>Wrote Gradle build scripts later extracted into a plugin; maintained Scala applications.</li>
+      </ul></div>
+      <div class="stack"><b>Stack</b>Java · Scala · Gradle<br>REST · Event-driven</div></div>
+  </section>
+
+  <section id="skills">
+    <div class="sh"><span class="no">03 — Skills</span><h2>The toolkit, <em>by purpose.</em></h2></div>
+    <div class="sk"><h4>Backend</h4><div><span>Java 17+</span><span>Spring Boot</span><span>Spring Cloud</span><span>Spring Data</span><span>Spring Security</span><span>JPA / Hibernate</span><span>SQL</span></div></div>
+    <div class="sk"><h4>Architecture</h4><div><span>Microservices</span><span>Distributed systems</span><span>Event-driven</span><span>DDD</span><span>CQRS</span><span>Clean architecture</span><span>REST / SOAP</span></div></div>
+    <div class="sk"><h4>Data &amp; messaging</h4><div><span>PostgreSQL</span><span>MongoDB</span><span>Redis</span><span>Elasticsearch</span><span>RabbitMQ</span><span>Apache Kafka</span><span>ActiveMQ</span></div></div>
+    <div class="sk"><h4>Cloud &amp; DevOps</h4><div><span>AWS</span><span>Kubernetes</span><span>Docker</span><span>Helm</span><span>Terraform</span><span>GitHub Actions</span><span>GitLab CI</span></div></div>
+    <div class="sk"><h4>Observability</h4><div><span>Prometheus</span><span>Grafana</span><span>ELK</span><span>OpenTelemetry</span><span>DataDog</span></div></div>
+    <div class="sk"><h4>Testing &amp; build</h4><div><span>JUnit</span><span>Mockito</span><span>Testcontainers</span><span>WebMvcTest</span><span>Maven</span><span>Gradle</span></div></div>
+    <div class="sk pers"><h4>Personal projects</h4><div><span>TypeScript</span><span>Preact / Vite</span><span>Flyway</span><span>ArchUnit</span><span>jqwik</span><span>Playwright</span><span>Web Push</span><span>Server-Sent Events</span><span>Caddy</span></div></div>
+  </section>
+
+  <section id="projects">
+    <div class="sh"><span class="no">04 — Projects</span><h2>Selected work, <em>built end to end.</em></h2></div>
+
+    <article class="pr">
+      <div class="pic"><img src="assets/dashboard-light.png" alt="ReadyBell staff dashboard"></div>
+      <div>
+        <div class="kind">Multi-tenant SaaS · 2026</div><h3>ReadyBell</h3>
+        <p><b>Problem.</b> Customers wait without knowing when an order is ready. A QR code on the receipt opens a PWA that tracks the order and sends a Web Push when it is ready: no app, no account.</p>
+        <ul><li>DDD and hexagonal architecture as a modular monolith, six bounded contexts</li><li>Tenant isolation in the query layer via a Hibernate <code>@Filter</code></li><li>Order state machine with optimistic locking; live updates over SSE</li></ul>
+        <div class="st">Java 21 · Spring Boot 3.4 · PostgreSQL · Redis · React / TypeScript · jqwik</div>
+        <a class="lk" href="#">View on GitHub →</a>
+      </div>
+    </article>
+
+    <article class="pr flip">
+      <div class="pic"><img src="assets/vt-light.png" alt="Vacancy Tracker dashboard"></div>
+      <div>
+        <div class="kind">Self-hosted tool · 2026</div><h3>Vacancy Tracker</h3>
+        <p><b>Problem.</b> A job search is scattered across feeds, alerts and spreadsheets. This tool collects vacancies from official APIs and alert emails, de-duplicates and scores them with explained reasons, and tracks each application.</p>
+        <ul><li>Isolated source adapters; scoring from user-defined rules</li><li>Opt-in AI tailoring with a fact check before saving</li><li>ArchUnit module boundaries, 46 recorded decisions, Docker Compose</li></ul>
+        <div class="st">Java 21 · Spring Boot 3.5 · PostgreSQL · Flyway · Preact · Testcontainers</div>
+        <a class="lk" href="#">View on GitHub →</a>
+      </div>
+    </article>
+
+    <div class="also">
+      <div><b>apache-kafka-training-tasks</b>Spring Boot exercises on Apache Kafka. 8 ★</div>
+      <div><b>spring-transaction-propagation-examples</b>Runnable samples of transaction propagation.</div>
+      <div><b>gradle-auto-deploy-to-nexus</b>Bundle libraries into one archive and publish to Nexus.</div>
+    </div>
+  </section>
+</div>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="kicker">05 — Contact</div>
+    <h2>Looking for a senior Java engineer? <em>Let's talk.</em></h2>
+    <div class="cols">
+      <p>Based in Prague and authorized to work in the Czech Republic. Open to relocation within the EU (visa sponsorship required outside the Czech Republic).</p>
+      <div><a class="mail" href="#">mi.kuziv@gmail.com</a>
+        <div class="lk"><a class="btn primary" href="#">Email me</a><a class="btn" href="#">LinkedIn</a><a class="btn" href="#">GitHub</a><a class="btn" href="#">CV (PDF)</a></div></div>
+    </div>
+    <div class="foot"><span>© 2026 Marian Kuziv</span><span>Prague, Czech Republic</span></div>
+  </div>
+</section>
+</body>
+</html>

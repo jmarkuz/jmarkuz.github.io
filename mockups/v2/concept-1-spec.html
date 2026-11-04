@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept 1 — Spec Sheet · Marian Kuziv</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f6f3; --panel:#ffffff; --ink:#111418; --ink-2:#3b4048; --muted:#6a707a; --faint:#9aa0a8;
+  --line:#e3e3dd; --line-2:#d2d2ca; --grid:#ebebe5; --accent:#2346d9; --accent-soft:#e8ecfc;
+  --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+.mono{font-family:var(--mono)}
+/* header */
+header.top{border-bottom:1px solid var(--line);background:var(--bg)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.id{font-family:var(--mono);font-size:13.5px;display:flex;gap:10px;align-items:center}
+.id b{display:inline-grid;place-items:center;width:28px;height:28px;background:var(--ink);color:#fff;border-radius:4px;font-weight:500;font-size:12px}
+.top nav{display:flex;gap:28px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.top nav a span{color:var(--faint)}
+.top .act{display:flex;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:1px solid var(--line-2);background:var(--panel);border-radius:4px;font-size:14px;font-weight:500}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.sm{height:34px;font-size:13px;padding:0 12px}
+/* hero */
+.hero{position:relative;border-bottom:1px solid var(--line);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:40px 40px;background-position:-1px -1px}
+.hero .wrap{padding-top:84px;padding-bottom:0}
+.tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.tg{font-family:var(--mono);font-size:12px;background:var(--panel);border:1px solid var(--line-2);border-radius:3px;padding:4px 10px;color:var(--ink-2)}
+.tg.on{background:var(--accent-soft);border-color:#c9d3f8;color:var(--accent)}
+.tg.on:before{content:"●";margin-right:7px;font-size:9px;vertical-align:1px}
+h1{font-size:96px;line-height:.98;letter-spacing:-.04em;font-weight:600}
+h1 .t{display:block;font-size:30px;letter-spacing:-.015em;font-weight:500;color:var(--accent);margin-top:18px;line-height:1.2}
+.lede{max-width:640px;font-size:20px;line-height:1.6;color:var(--ink-2);margin-top:26px}
+.lede b{color:var(--ink);font-weight:600}
+.cta{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap}
+/* career path */
+.path{margin-top:72px;background:var(--panel);border:1px solid var(--line-2);border-bottom:0;border-radius:6px 6px 0 0}
+.path .hd{display:flex;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted)}
+.path .hd b{color:var(--ink);font-weight:500}
+.nodes{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.node{padding:22px 22px 26px;position:relative}
+.node+.node{border-left:1px dashed var(--line-2)}
+.node .yr{font-family:var(--mono);font-size:12px;color:var(--faint)}
+.node .dom{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin-top:28px}
+.node h3{font-size:20px;font-weight:600;letter-spacing:-.01em;margin-top:2px}
+.node p{font-size:14px;color:var(--muted);margin-top:4px;line-height:1.5}
+.rail{position:absolute;left:22px;right:22px;top:58px;height:1px;background:var(--line-2)}
+.dot{position:absolute;top:-5px;width:11px;height:11px;border-radius:50%;background:var(--panel);border:2px solid var(--accent)}
+.node.now .dot{background:var(--accent)}
+.node .dot{left:22px;top:53px}
+/* proof strip */
+.proofband{background:var(--panel);border-bottom:1px solid var(--line)}
+.proof{display:grid;grid-template-columns:repeat(4,1fr)}
+.proof>div{padding:26px 28px;border-left:1px solid var(--line)}
+.proof>div:first-child{border-left:0;padding-left:0}
+.proof .n{font-size:40px;font-weight:600;letter-spacing:-.035em;line-height:1}
+.proof .n i{font-style:normal;color:var(--accent);font-size:24px}
+.proof .l{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.45}
+.proof .s{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:4px}
+/* section */
+section{padding:96px 0;border-bottom:1px solid var(--line)}
+.sh{display:grid;grid-template-columns:260px 1fr;gap:40px;margin-bottom:44px;align-items:baseline}
+.sh .k{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.sh .k b{color:var(--accent);font-weight:500}
+.sh h2{font-size:40px;font-weight:600;letter-spacing:-.03em;line-height:1.12}
+.grid2{display:grid;grid-template-columns:260px 1fr;gap:40px}
+.grid2>.c{grid-column:2}
+/* about */
+.about{display:grid;grid-template-columns:1.25fr 1fr;gap:48px}
+.about p{font-size:17px;color:var(--ink-2);margin-bottom:16px}
+.about p b{color:var(--ink);font-weight:600}
+.kv{background:var(--panel);border:1px solid var(--line-2);border-radius:6px}
+.kv div{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);font-size:14.5px}
+.kv div:last-child{border:0}
+.kv dt{font-family:var(--mono);font-size:12px;color:var(--faint);padding-top:2px}
+.kv dd b{font-weight:600}
+/* experience: version history */
+.ver{background:var(--panel);border:1px solid var(--line-2);border-radius:6px;overflow:hidden}
+.v{display:grid;grid-template-columns:190px 1fr;border-bottom:1px solid var(--line)}
+.v:last-child{border:0}
+.v .m{padding:26px 22px;border-right:1px solid var(--line);background:#fbfbf9}
+.v .m .co{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.v .m .dt{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+.v .m .badge{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:3px;background:var(--accent-soft);color:var(--accent)}
+.v .m .badge.g{background:#efefea;color:var(--muted)}
+.v .b{padding:24px 28px}
+.v h3{font-size:17px;font-weight:600}
+.v h3 span{color:var(--muted);font-weight:400}
+.v ul{list-style:none;margin-top:12px;display:grid;gap:8px}
+.v li{font-size:15px;color:var(--ink-2);padding-left:22px;position:relative}
+.v li:before{content:"+";position:absolute;left:0;font-family:var(--mono);color:var(--accent);font-weight:500}
+.v li b{color:var(--ink);font-weight:600}
+.v .st{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.v .st span{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line-2);border-radius:3px;padding:2px 8px;color:var(--ink-2)}
+/* skills matrix */
+.mx{background:var(--panel);border:1px solid var(--line-2);border-radius:6px;overflow:hidden}
+.mx .row{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
+.mx .row:last-child{border:0}
+.mx .g{padding:16px 20px;font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;border-right:1px solid var(--line);background:#fbfbf9}
+.mx .items{padding:12px 18px;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.sk{font-size:14px;padding:4px 10px;border-radius:3px;border:1px solid var(--line-2);display:inline-flex;align-items:center;gap:7px}
+.sk i{width:7px;height:7px;border-radius:50%;display:inline-block}
+.sk i.w{background:var(--accent)}
+.sk i.p{border:1.5px solid var(--accent);background:transparent}
+.sk i.w+i.p{margin-left:-3px}
+.leg{display:flex;gap:24px;margin-top:16px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.leg span{display:inline-flex;align-items:center;gap:8px}
+.leg i{width:8px;height:8px;border-radius:50%;display:inline-block;background:var(--accent)}
+.leg i.p{background:transparent;border:1.5px solid var(--accent)}
+/* projects */
+.pj{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:var(--panel);border:1px solid var(--line-2);border-radius:6px;overflow:hidden}
+.card .shot{height:250px;border-bottom:1px solid var(--line);position:relative;overflow:hidden;background:#eef0f3}
+.card .shot img.main{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+.card .shot img.ph{position:absolute;right:18px;bottom:-60px;width:120px;border-radius:12px;border:1px solid var(--line-2);box-shadow:0 18px 40px -18px rgba(0,0,0,.35)}
+.card .hd{padding:22px 24px 4px;display:flex;justify-content:space-between;align-items:flex-start}
+.card h3{font-size:24px;font-weight:600;letter-spacing:-.02em}
+.card .kind{font-family:var(--mono);font-size:12px;color:var(--accent);margin-top:2px}
+.card .spec{margin:14px 24px 0;border-top:1px solid var(--line)}
+.card .spec div{display:grid;grid-template-columns:104px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.card .spec dt{font-family:var(--mono);font-size:11.5px;color:var(--faint);padding-top:2px;text-transform:uppercase;letter-spacing:.05em}
+.card .ft{display:flex;gap:8px;padding:16px 24px 22px}
+.small{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.small a{background:var(--panel);border:1px solid var(--line-2);border-radius:6px;padding:16px 18px;font-size:13.5px;color:var(--muted)}
+.small b{display:block;font-family:var(--mono);font-size:13px;color:var(--ink);font-weight:500;margin-bottom:4px}
+/* contact */
+.contact{background:var(--ink);color:#f3f4f6;border:0;
+  background-image:linear-gradient(#1b1f25 1px,transparent 1px),linear-gradient(90deg,#1b1f25 1px,transparent 1px);background-size:40px 40px}
+.contact .sh .k{color:#8b919a}.contact .sh .k b{color:#8ea2ff}
+.contact h2{font-size:64px;line-height:1.02}
+.contact h2 span{color:#8ea2ff}
+.cc{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:8px}
+.cc p{color:#aeb4bd;font-size:17px;max-width:460px}
+.ch{display:grid;gap:0;border:1px solid #2a2f37;border-radius:6px;background:#15191e}
+.ch a{display:grid;grid-template-columns:110px 1fr auto;padding:16px 20px;border-bottom:1px solid #2a2f37;font-size:15px;align-items:center}
+.ch a:last-child{border:0}
+.ch a span{font-family:var(--mono);font-size:12px;color:#8b919a}
+.ch a em{font-style:normal;color:#8ea2ff;font-family:var(--mono);font-size:13px}
+footer{background:var(--ink);color:#6f7680;font-family:var(--mono);font-size:12px;border-top:1px solid #22272e}
+footer .wrap{display:flex;justify-content:space-between;padding:22px 40px}
+
+/* ---------- mobile ---------- */
+@media (max-width:760px){
+  .wrap{padding:0 20px}
+  .top nav,.top .act .btn:not(.pri){display:none}
+  .hero .wrap{padding-top:44px}
+  h1{font-size:52px}
+  h1 .t{font-size:21px;margin-top:12px}
+  .lede{font-size:17px}
+  .cta .btn{flex:1 1 auto;justify-content:center;white-space:nowrap}
+  .path .hd{flex-direction:column;gap:2px}
+  .path{margin-top:44px}
+  .nodes{grid-template-columns:1fr}
+  .node+.node{border-left:0;border-top:1px dashed var(--line-2)}
+  .rail{display:none}
+  .node{padding:16px 18px 18px 44px}
+  .node .dot{left:18px}
+  .node .dom{margin-top:2px}
+  .node .dot{top:21px}
+  .proof{grid-template-columns:1fr 1fr}
+  .proof{padding:0}
+  .proof>div{padding:18px 20px;border-left:0;border-top:1px solid var(--line)}
+  .proof>div:nth-child(-n+2){border-top:0}
+  .proof>div:nth-child(even){border-left:1px solid var(--line)}
+  .proof>div:first-child{padding-left:20px}
+  .proof .n{font-size:30px}
+  section{padding:60px 0}
+  .sh,.grid2{grid-template-columns:1fr;gap:10px}
+  .grid2>.c{grid-column:1}
+  .sh{margin-bottom:26px}
+  .sh h2{font-size:28px}
+  .about{grid-template-columns:1fr;gap:24px}
+  .v{grid-template-columns:1fr}
+  .v .m{border-right:0;border-bottom:1px solid var(--line);padding:16px 18px}
+  .v .b{padding:16px 18px 20px}
+  .mx .row{grid-template-columns:1fr}
+  .mx .g{border-right:0;border-bottom:1px solid var(--line);padding:10px 16px}
+  .pj,.small{grid-template-columns:1fr}
+  .card .shot{height:190px}
+  .contact h2{font-size:38px}
+  .cc{grid-template-columns:1fr}
+  .ch a{grid-template-columns:84px 1fr auto}
+  footer .wrap{padding:18px 20px;flex-direction:column;gap:4px}
+}
+</style>
+<script>if(location.search.includes('measure'))addEventListener('load',()=>setTimeout(()=>document.body.dataset.h=document.documentElement.scrollHeight,300))</script>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="id" href="#"><b>MK</b>marian-kuziv</a>
+  <nav><a href="#about"><span>01</span> about</a><a href="#experience"><span>02</span> experience</a><a href="#skills"><span>03</span> skills</a><a href="#projects"><span>04</span> projects</a><a href="#contact"><span>05</span> contact</a></nav>
+  <div class="act"><a class="btn sm" href="https://github.com/jmarkuz">GitHub</a><a class="btn sm pri" href="mailto:mi.kuziv@gmail.com">Email</a></div>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div class="tagrow"><span class="tg on">Open to new roles</span><span class="tg">Prague, CZ</span><span class="tg">Java · Spring Boot</span></div>
+  <h1>Marian Kuziv<span class="t">Senior Java Software Engineer</span></h1>
+  <p class="lede">10+ years building backend systems in <b>banking, telecom and iGaming</b>. I work where systems integrate, scale and have to be modernised without stopping: <b>microservices, messaging, data stores and the teams around them.</b></p>
+  <div class="cta"><a class="btn pri" href="mailto:mi.kuziv@gmail.com">Get in touch</a><a class="btn" href="#projects">Selected projects</a><a class="btn" href="https://www.linkedin.com/in/mariankuziv/">LinkedIn ↗</a></div>
+
+  <div class="path">
+    <div class="hd"><span><b>career.path</b> · 2016 → today</span><span>4 companies · 3 industries</span></div>
+    <div class="nodes">
+      <div class="rail"></div>
+      <div class="node"><span class="dot"></span><div class="yr">2016 – 2018</div><div class="dom">Banking</div><h3>Luxoft</h3><p>OTC-derivative trade processing, regulatory reporting</p></div>
+      <div class="node"><span class="dot"></span><div class="yr">2018 – 2021</div><div class="dom">Telecom</div><h3>MobiChord</h3><p>Carrier and MDM provider integrations</p></div>
+      <div class="node"><span class="dot"></span><div class="yr">2021 – 2024</div><div class="dom">Telecom</div><h3>Brightfin</h3><p>TEM / UEM microservices, Java team lead</p></div>
+      <div class="node now"><span class="dot"></span><div class="yr">2024 – now</div><div class="dom">iGaming</div><h3>Atlaslive</h3><p>Risk, retail and payments modernisation</p></div>
+    </div>
+  </div>
+</div></div>
+
+<div class="proofband"><div class="wrap proof">
+  <div><div class="n">10<i>+ yrs</i></div><div class="l">Java backend engineering</div><div class="s">since 2016</div></div>
+  <div><div class="n">10,000<i>+</i></div><div class="l">transactions a day, processed in guaranteed order</div><div class="s">luxoft · otc derivatives</div></div>
+  <div><div class="n">2h<i> → 15m</i></div><div class="l">regulatory report generation</div><div class="s">luxoft · investment banking</div></div>
+  <div><div class="n">80<i>%+</i></div><div class="l">test coverage on critical services</div><div class="s">atlaslive · igaming</div></div>
+</div></div>
+
+<section id="about"><div class="wrap">
+  <div class="sh"><div class="k"><b>01</b> / about</div><h2>Owns the lifecycle, from requirements to production support.</h2></div>
+  <div class="grid2"><div class="c about">
+    <div>
+      <p>I started in investment banking, building trade-processing and regulatory-reporting software, then moved into telecom and iGaming, where <b>integration-heavy backends</b> are the norm: carrier APIs, MDM/UEM providers, payment gateways and regulatory feeds.</p>
+      <p>Most of my work sits in <b>microservices, messaging and data stores</b>, and in the work that keeps them healthy: caching and query tuning, Kubernetes resource tuning, runtime and framework upgrades, tests and documentation.</p>
+      <p>I have led a team of Java developers, run technical design and code review, and I am comfortable chasing a production issue across service boundaries.</p>
+    </div>
+    <dl class="kv">
+      <div><dt>focus</dt><dd>Microservices, distributed and event-driven systems</dd></div>
+      <div><dt>modernised</dt><dd><b>Monolith → microservices</b>; legacy payments → Payment Gateway; <b>Java 21, RabbitMQ 4.0</b></dd></div>
+      <div><dt>led</dt><dd>A Java team at Brightfin: design, review, cross-team communication</dd></div>
+      <div><dt>quality</dt><dd>Unit, integration and e2e tests; Swagger; Confluence</dd></div>
+      <div><dt>education</dt><dd>MSc Mathematics, Drohobych Ivan Franko State Pedagogical University</dd></div>
+      <div><dt>languages</dt><dd>Ukrainian (native) · English (professional, B2)</dd></div>
+    </dl>
+  </div></div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <div class="sh"><div class="k"><b>02</b> / experience</div><h2>Version history.</h2></div>
+  <div class="grid2"><div class="c"><div class="ver">
+    <div class="v"><div class="m"><div class="co">Atlaslive</div><div class="dt">Apr 2024 – present</div><span class="badge">current</span></div><div class="b">
+      <h3>Senior Java Software Engineer <span>· iGaming · Risk Management &amp; Retail</span></h3>
+      <ul>
+        <li>Modernised business-critical services across <b>Risk Management, Retail and Bonus</b> domains, incl. regulatory and external-provider integrations.</li>
+        <li>Migrated payments from legacy to a <b>Payment Gateway</b> architecture; redesigned cross-service workflows and message routing to cut coupling.</li>
+        <li>Faster, steadier requests with <b>Redis caching</b> and query optimisation; services moved to <b>Java 21 and RabbitMQ 4.0</b>; tuned Kubernetes HPA.</li>
+        <li>Raised test coverage to <b>80%+</b> on critical services.</li>
+      </ul>
+      <div class="st"><span>Java 21</span><span>Spring Boot</span><span>RabbitMQ 4.0</span><span>Redis</span><span>Kubernetes</span></div>
+    </div></div>
+    <div class="v"><div class="m"><div class="co">Brightfin</div><div class="dt">May 2021 – Jan 2024<br>Senior from Sep 2022</div><span class="badge g">telecom</span></div><div class="b">
+      <h3>Senior Java Software Engineer <span>· TEM &amp; MDM/UEM platform</span></h3>
+      <ul>
+        <li>Built core microservices for <b>Telecom Expense Management and Unified Endpoint Management</b> with multiple carrier and MDM/UEM integrations.</li>
+        <li><b>Led the Java team</b> after the previous lead left: guidance, technical design, code review.</li>
+        <li>Contributed to the <b>monolith-to-microservices</b> transition; supported <b>AWS, GCP and Azure</b> infrastructure with DevOps.</li>
+      </ul>
+      <div class="st"><span>Microservices</span><span>AWS · GCP · Azure</span><span>Swagger</span><span>MACD</span></div>
+    </div></div>
+    <div class="v"><div class="m"><div class="co">MobiChord</div><div class="dt">Mar 2018 – May 2021</div><span class="badge g">telecom</span></div><div class="b">
+      <h3>Java Software Engineer <span>· MDM / telecom integrations</span></h3>
+      <ul>
+        <li>Integrations with <b>AT&amp;T, Verizon, T-Mobile, Telus</b> and <b>Jamf Pro, MobileIron, Microsoft Intune, MaaS360, BlackBerry</b>.</li>
+        <li>Inventory reporting service with catalog support; unit, integration and e2e tests and CI/CD pipelines.</li>
+      </ul>
+    </div></div>
+    <div class="v"><div class="m"><div class="co">Luxoft</div><div class="dt">Apr 2016 – Mar 2018<br>from Java intern</div><span class="badge g">banking</span></div><div class="b">
+      <h3>Junior Java Developer <span>· investment banking</span></h3>
+      <ul>
+        <li>Event-driven order pipeline for OTC derivatives: <b>10,000+ transactions a day</b>, guaranteed ordering.</li>
+        <li>Regulatory reporting automation: <b>2 hours → 15 minutes</b>.</li>
+        <li>CRM ↔ banking backend integration; Gradle build scripts extracted into a plugin; Scala maintenance.</li>
+      </ul>
+      <div class="st"><span>Java</span><span>Scala</span><span>Gradle</span><span>REST</span></div>
+    </div></div>
+  </div></div></div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <div class="sh"><div class="k"><b>03</b> / skills</div><h2>Where each tool was used.</h2></div>
+  <div class="grid2"><div class="c">
+    <div class="mx">
+      <div class="row"><div class="g">Languages</div><div class="items"><span class="sk"><i class="w"></i><i class="p"></i>Java 17–21</span><span class="sk"><i class="w"></i><i class="p"></i>SQL</span><span class="sk"><i class="w"></i>Scala</span><span class="sk"><i class="p"></i>TypeScript</span></div></div>
+      <div class="row"><div class="g">Frameworks</div><div class="items"><span class="sk"><i class="w"></i><i class="p"></i>Spring Boot</span><span class="sk"><i class="w"></i><i class="p"></i>Spring Data / JPA / Hibernate</span><span class="sk"><i class="w"></i><i class="p"></i>Spring Security</span><span class="sk"><i class="w"></i>Spring Cloud</span><span class="sk"><i class="p"></i>React</span><span class="sk"><i class="p"></i>Preact · Vite</span></div></div>
+      <div class="row"><div class="g">Architecture</div><div class="items"><span class="sk"><i class="w"></i>Microservices</span><span class="sk"><i class="w"></i><i class="p"></i>Event-driven</span><span class="sk"><i class="w"></i><i class="p"></i>DDD</span><span class="sk"><i class="w"></i><i class="p"></i>Clean / Hexagonal</span><span class="sk"><i class="w"></i>CQRS</span><span class="sk"><i class="w"></i>REST / SOAP</span></div></div>
+      <div class="row"><div class="g">Data &amp; messaging</div><div class="items"><span class="sk"><i class="w"></i><i class="p"></i>PostgreSQL</span><span class="sk"><i class="w"></i><i class="p"></i>Redis</span><span class="sk"><i class="w"></i>MongoDB</span><span class="sk"><i class="w"></i>Elasticsearch</span><span class="sk"><i class="w"></i>RabbitMQ</span><span class="sk"><i class="w"></i><i class="p"></i>Apache Kafka</span><span class="sk"><i class="w"></i>ActiveMQ</span><span class="sk"><i class="p"></i>Flyway</span></div></div>
+      <div class="row"><div class="g">Cloud &amp; DevOps</div><div class="items"><span class="sk"><i class="w"></i>AWS</span><span class="sk"><i class="w"></i>Kubernetes</span><span class="sk"><i class="w"></i><i class="p"></i>Docker</span><span class="sk"><i class="w"></i>Helm</span><span class="sk"><i class="w"></i>Terraform</span><span class="sk"><i class="w"></i><i class="p"></i>GitHub Actions</span><span class="sk"><i class="w"></i>GitLab CI</span></div></div>
+      <div class="row"><div class="g">Observability</div><div class="items"><span class="sk"><i class="w"></i>Prometheus</span><span class="sk"><i class="w"></i>Grafana</span><span class="sk"><i class="w"></i>ELK</span><span class="sk"><i class="w"></i>OpenTelemetry</span><span class="sk"><i class="w"></i>DataDog</span></div></div>
+      <div class="row"><div class="g">Testing &amp; build</div><div class="items"><span class="sk"><i class="w"></i><i class="p"></i>JUnit</span><span class="sk"><i class="w"></i>Mockito</span><span class="sk"><i class="w"></i><i class="p"></i>Testcontainers</span><span class="sk"><i class="p"></i>ArchUnit</span><span class="sk"><i class="p"></i>jqwik</span><span class="sk"><i class="p"></i>Playwright</span><span class="sk"><i class="w"></i><i class="p"></i>Gradle</span><span class="sk"><i class="w"></i><i class="p"></i>Maven</span></div></div>
+    </div>
+    <div class="leg"><span><i></i>Professional (CV)</span><span><i class="p"></i>Personal projects (GitHub)</span></div>
+  </div></div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <div class="sh"><div class="k"><b>04</b> / projects</div><h2>Selected projects.</h2></div>
+  <div class="grid2"><div class="c">
+    <div class="pj">
+      <article class="card">
+        <div class="shot"><img class="main" src="../assets/dashboard-light.png" alt="ReadyBell staff dashboard"><img class="ph" src="../assets/tracking-ready.png" alt="ReadyBell customer tracking page"></div>
+        <div class="hd"><div><h3>ReadyBell</h3><div class="kind">multi-tenant SaaS · PWA</div></div></div>
+        <dl class="spec">
+          <div><dt>Problem</dt><dd>Customers wait without knowing when their order is ready. A receipt QR code opens a tracking page with a Web Push alert: no app, no account.</dd></div>
+          <div><dt>Architecture</dt><dd>DDD + hexagonal modular monolith, 6 bounded contexts; tenant isolation via Hibernate <code>@Filter</code>; order state machine with optimistic locking; SSE with polling fallback</dd></div>
+          <div><dt>Stack</dt><dd>Java 21 · Spring Boot 3.4 · PostgreSQL · Redis · React + TypeScript · jqwik</dd></div>
+          <div><dt>Role</dt><dd>Author</dd></div>
+        </dl>
+        <div class="ft"><a class="btn sm" href="https://github.com/jmarkuz/ReadyBell">Repository ↗</a></div>
+      </article>
+      <article class="card">
+        <div class="shot"><img class="main" src="../assets/vt-light.png" alt="Vacancy Tracker dashboard"></div>
+        <div class="hd"><div><h3>Vacancy Tracker</h3><div class="kind">self-hosted tool · Docker Compose</div></div></div>
+        <dl class="spec">
+          <div><dt>Problem</dt><dd>A job search is scattered across feeds, alerts and spreadsheets. This collects vacancies, removes duplicates, scores them with reasons and tracks each application.</dd></div>
+          <div><dt>Architecture</dt><dd>Isolated source adapters; rule-based scoring; opt-in AI tailoring with a fact check; module boundaries checked by ArchUnit; 46 recorded ADRs</dd></div>
+          <div><dt>Stack</dt><dd>Java 21 · Spring Boot 3.5 · PostgreSQL · Flyway · Preact + TypeScript · Testcontainers · Playwright</dd></div>
+          <div><dt>Role</dt><dd>Author</dd></div>
+        </dl>
+        <div class="ft"><a class="btn sm" href="https://github.com/jmarkuz/vacancy-tracker">Repository ↗</a></div>
+      </article>
+    </div>
+    <div class="small">
+      <a href="https://github.com/jmarkuz/apache-kafka-training-tasks"><b>apache-kafka-training-tasks</b>Kafka with Spring Boot, training tasks · ★ 8</a>
+      <a href="https://github.com/jmarkuz/spring-transaction-propagation-examples"><b>spring-transaction-propagation-examples</b>Runnable samples of Spring transaction propagation</a>
+      <a href="https://github.com/jmarkuz/gradle-auto-deploy-to-nexus"><b>gradle-auto-deploy-to-nexus</b>Bundle libraries into one archive, publish to Nexus</a>
+    </div>
+  </div></div>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap">
+  <div class="sh"><div class="k"><b>05</b> / contact</div><h2>Hiring a senior Java engineer? <span>Write to me.</span></h2></div>
+  <div class="grid2"><div class="c cc">
+    <p>Based in Prague and authorized to work in the Czech Republic. Open to relocation within the EU (visa sponsorship required outside the Czech Republic).</p>
+    <div class="ch">
+      <a href="mailto:mi.kuziv@gmail.com"><span>email</span>mi.kuziv@gmail.com<em>→</em></a>
+      <a href="https://www.linkedin.com/in/mariankuziv/"><span>linkedin</span>in/mariankuziv<em>↗</em></a>
+      <a href="https://github.com/jmarkuz"><span>github</span>jmarkuz<em>↗</em></a>
+      <a href="#"><span>cv</span>Marian_Kuziv_CV.pdf<em>↓</em></a>
+    </div>
+  </div></div>
+</div></section>
+<footer><div class="wrap"><span>© 2026 Marian Kuziv</span><span>jmarkuz.github.io</span></div></footer>
+</body>
+</html>

@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mirrors tailwind.config.ts for the hand-written CSS below. */
+:root {
+  --color-bg: #f7f6f2;
+  --color-surface: #ffffff;
+  --color-ink: #15171a;
+  --color-muted: #5d626a;
+  --color-bank: #0f8a6a;
+  --color-tel: #5a55d6;
+  --color-gam: #c96f17;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  section[id],
+  [id="experience"] {
+    scroll-margin-top: 76px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  .bg-night :focus-visible {
+    outline-color: #fff;
+  }
+}
+
+/* The current role in the trace is still "running". */
+.span-running::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 26px;
+  background: repeating-linear-gradient(-45deg, rgb(255 255 255 / 0.35) 0 4px, transparent 4px 8px);
+  background-size: 16px 100%;
+  animation: span-run 1.2s linear infinite;
+}
+@keyframes span-run {
+  to {
+    background-position: 16px 0;
+  }
+}
+
+/* "Both" marker for skills: a filled dot followed by a hollow one. */
+.dot-both {
+  box-shadow:
+    8px 0 0 -1.5px var(--color-surface),
+    8px 0 0 0 var(--color-muted);
+  margin-right: 8px;
+}
+.skill-hit .dot-both {
+  box-shadow:
+    8px 0 0 -1.5px var(--color-ink),
+    8px 0 0 0 #fff;
+}
+
+/* Sections ease in as they scroll into view, where the browser supports it. No JS, nothing hidden without support. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
