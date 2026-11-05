@@ -80,6 +80,19 @@ export const person = {
   availability:
     "Based in Prague and authorized to work in the Czech Republic. Open to relocation within the EU (visa sponsorship required outside the Czech Republic).",
   email: "mi.kuziv@gmail.com",
+  /** 4:5 portrait on a black background for the hero; `share` is a square JPEG for search engines. */
+  photo: {
+    src: "/portrait.webp",
+    width: 1000,
+    height: 1250,
+    share: "/marian-kuziv.jpg",
+    alt: "Portrait of Marian Kuziv in side light, wearing headphones",
+  },
+  /**
+   * "spotlight": dark hero, the photo dissolves into black behind the name.
+   * "overlap": light hero, the name crosses the edge of a dark photo card and changes colour.
+   */
+  heroStyle: "spotlight" as "spotlight" | "overlap",
   linkedin: { label: "in/mariankuziv", href: "https://www.linkedin.com/in/mariankuziv/" },
   github: { label: "jmarkuz", href: "https://github.com/jmarkuz" },
   /** Drop a PDF into /public and set `href` to show the CV link. */

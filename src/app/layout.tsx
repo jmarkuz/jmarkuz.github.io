@@ -34,6 +34,7 @@ const jsonLd = {
   name: person.name,
   jobTitle: person.title,
   url: site.url,
+  image: `${site.url}${person.photo.share}`,
   email: `mailto:${person.email}`,
   address: { "@type": "PostalAddress", addressLocality: "Prague", addressCountry: "CZ" },
   sameAs: [person.linkedin.href, person.github.href],

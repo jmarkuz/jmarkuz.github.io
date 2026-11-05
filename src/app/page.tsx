@@ -7,6 +7,7 @@ import { LensProvider } from "@/components/LensProvider";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Skills } from "@/components/Skills";
 import { Trace } from "@/components/Trace";
+import { person } from "@/content/profile";
 import { monthOf } from "@/lib/time";
 
 export default function Home() {
@@ -17,18 +18,20 @@ export default function Home() {
     <LensProvider buildMonth={buildMonth}>
       <div id="top" />
       <SiteHeader />
-      <main id="main" className="mx-auto max-w-[1240px] px-[18px] md:px-9">
+      <main id="main">
         <Hero />
-        <section id="experience" aria-labelledby="experience-title">
-          <h2 id="experience-title" className="sr-only">
-            Experience
-          </h2>
-          <LensBar />
-          <Trace />
-        </section>
-        <About />
-        <CaseFiles />
-        <Skills />
+        <div className={`mx-auto max-w-[1240px] px-[18px] md:px-9 ${person.heroStyle === "spotlight" ? "pt-4 md:pt-6" : ""}`}>
+          <section id="experience" aria-labelledby="experience-title">
+            <h2 id="experience-title" className="sr-only">
+              Experience
+            </h2>
+            <LensBar />
+            <Trace />
+          </section>
+          <About />
+          <CaseFiles />
+          <Skills />
+        </div>
       </main>
       <Contact />
     </LensProvider>
