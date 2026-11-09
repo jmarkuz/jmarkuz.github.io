@@ -110,7 +110,7 @@ export const person = {
   searchTitles: ["Senior Java Backend Engineer", "Senior Backend Engineer"],
   tagline: "Backend systems for banking, telecom and iGaming.",
   intro:
-    "10+ years of Java and Spring Boot: microservices, distributed and high-load systems, event-driven messaging, and the modernisation of platforms that cannot stop. Below is my career as a trace. Pick what you are hiring for and the evidence lights up.",
+    "10+ years of Java and Spring Boot: microservices, distributed and high-load systems, event-driven messaging, and the modernisation of platforms that cannot stop.",
   status: "Open to Senior Java Developer roles · Prague, CZ",
   /** One line a recruiter needs before writing: where, legal status, relocation. */
   availabilityShort: "Prague, CZ · authorized to work in CZ · open to EU relocation",
@@ -158,10 +158,12 @@ export const coreStack = [
 ];
 
 export const proof = [
-  { value: "10+ yrs", label: "Java backend engineering", source: "since 2016" },
-  { value: "10,000+", label: "transactions/day in guaranteed order", source: "trade processing · Luxoft" },
-  { value: "2h → 15m", label: "regulatory report generation", source: "reporting · Luxoft" },
-  { value: "80%+", label: "test coverage, critical services", source: "Atlaslive" },
+  { value: "10+ yrs", label: "Java backend engineering" },
+  { value: "3", label: "industries: Banking · Telecom · iGaming" },
+  { value: "10,000+", label: "transactions/day in guaranteed order" },
+  { value: "9", label: "carrier & MDM integrations" },
+  { value: "2h → 15m", label: "regulatory report generation" },
+  { value: "80%+", label: "test coverage, critical services" },
 ];
 
 export const lenses: { id: LensId; label: string; keywords: string[] }[] = [

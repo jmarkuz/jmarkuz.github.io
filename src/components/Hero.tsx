@@ -139,18 +139,15 @@ export function Hero() {
           </ul>
         </div>
 
-        <dl className="stats-sweep mt-8 grid grid-cols-2 rounded-xl border border-line-2 bg-surface/80 backdrop-blur-sm md:mt-10 md:grid-cols-4">
+        <dl className="stats-sweep mt-8 grid grid-cols-2 rounded-xl border border-line-2 bg-surface/80 backdrop-blur-sm md:mt-10 md:grid-cols-3 lg:grid-cols-6">
           {proof.map((item, i) => (
             <div
               key={item.value}
-              className={`flex flex-col-reverse px-3.5 py-3 md:px-5 md:py-4 ${i % 2 ? "border-l border-line-2" : ""} ${
-                i > 1 ? "border-t border-line-2 md:border-t-0" : ""
-              } ${i === 2 ? "md:border-l" : ""}`}
+              className={`flex flex-col-reverse px-3.5 py-3 md:px-5 md:py-4 border-line-2 ${i % 2 ? "border-l" : ""} ${i > 1 ? "border-t" : ""} ${
+                i % 3 ? "md:border-l" : "md:border-l-0"
+              } ${i > 2 ? "md:border-t" : "md:border-t-0"} ${i > 0 ? "lg:border-l" : "lg:border-l-0"} lg:border-t-0`}
             >
-              <dt className="mt-1 text-[13.5px] leading-snug text-muted">
-                {item.label}
-                <span className="mt-0.5 block font-mono text-[12px] text-faint">{item.source}</span>
-              </dt>
+              <dt className="mt-1 text-[13.5px] leading-snug text-muted">{item.label}</dt>
               <dd className="text-[22px] leading-tight font-semibold tracking-[-0.03em] md:text-[26px]">
                 {item.value}
               </dd>
