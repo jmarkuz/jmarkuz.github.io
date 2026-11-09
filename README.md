@@ -1,4 +1,4 @@
-# jmarkuz.github.io
+# jmarkuz.github.io - portfolio
 
 Personal site of Marian Kuziv, Senior Java Software Engineer. A single static page built with Next.js (static export), TypeScript and Tailwind CSS, deployed to GitHub Pages.
 
