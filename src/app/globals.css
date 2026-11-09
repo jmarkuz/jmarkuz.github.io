@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Colour tokens as RGB channels. The page is light; `.dark-zone` (hero, transition top, footer, header over them)
+ * switches every token to the dark palette. Text colours pass WCAG AA on their own backgrounds in both palettes.
+ */
+:root {
+  color-scheme: light;
+  --c-bg: 247 246 242;
+  --c-surface: 255 255 255;
+  --c-sunk: 251 250 247;
+  --c-ink: 21 23 26;
+  --c-ink-2: 61 66 74;
+  --c-muted: 93 98 106;
+  --c-faint: 103 108 116;
+  --c-line: 230 227 220;
+  --c-line-2: 213 209 200;
+  --c-bank: 15 138 106;  --c-bank-tint: 223 242 236;  --c-bank-ink: 11 107 82;
+  --c-tel: 90 85 214;    --c-tel-tint: 232 231 251;   --c-tel-ink: 69 64 181;
+  --c-gam: 201 111 23;   --c-gam-tint: 251 236 220;   --c-gam-ink: 143 76 11;
+  --c-pill-sub: 169 174 182;
+  --color-bg: rgb(var(--c-bg));
+  --color-surface: rgb(var(--c-surface));
+  --color-ink: rgb(var(--c-ink));
+  --color-muted: rgb(var(--c-muted));
+  --color-bank: rgb(var(--c-bank));
+  --color-tel: rgb(var(--c-tel));
+  --color-gam: rgb(var(--c-gam));
+}
+
+.dark-zone {
+  color-scheme: dark;
+  --c-bg: 11 12 14;
+  --c-surface: 18 20 23;
+  --c-sunk: 14 16 19;
+  --c-ink: 242 243 245;
+  --c-ink-2: 200 204 210;
+  --c-muted: 155 161 169;
+  --c-faint: 133 139 147;
+  --c-line: 31 35 40;
+  --c-line-2: 45 50 56;
+  --c-bank: 43 181 143;  --c-bank-tint: 15 43 37;   --c-bank-ink: 95 211 177;
+  --c-tel: 122 117 240;  --c-tel-tint: 31 30 61;    --c-tel-ink: 174 171 255;
+  --c-gam: 224 138 46;   --c-gam-tint: 51 34 15;    --c-gam-ink: 242 182 115;
+  --c-pill-sub: 74 80 89;
+  background-color: rgb(var(--c-bg));
+  color: rgb(var(--c-ink));
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: rgb(var(--c-bg));
+    color: rgb(var(--c-ink));
+    font-family: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  section[id],
+  [id="experience"] {
+    scroll-margin-top: 76px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: rgb(122 117 240 / 0.45);
+    color: #fff;
+  }
+}
+
+/* The current role in the trace is still "running". */
+.span-running::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 26px;
+  background: repeating-linear-gradient(-45deg, rgb(0 0 0 / 0.28) 0 4px, transparent 4px 8px);
+  background-size: 16px 100%;
+  animation: span-run 1.2s linear infinite;
+}
+@keyframes span-run {
+  to {
+    background-position: 16px 0;
+  }
+}
+
+/* Spotlight hero: the portrait melts into the page. Every edge uses an eased (smoothstep) fade, so there is no
+   visible start or end of the gradient. Phones and tablets: centred photo, soft on all four sides. Desktop: aligned to the
+   right edge of the page content, soft on the left, right, top and bottom. The wrapper in Hero uses mix-blend-mode: lighten, so the photo's black
+   takes the page colour instead of forming a darker patch. */
+.spotlight-mask {
+  -webkit-mask-image: linear-gradient(to right,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 2.6%,rgb(0 0 0 / 0.104) 5.2%,rgb(0 0 0 / 0.216) 7.8%,rgb(0 0 0 / 0.352) 10.4%,rgb(0 0 0 / 0.5) 13%,rgb(0 0 0 / 0.648) 15.6%,rgb(0 0 0 / 0.784) 18.2%,rgb(0 0 0 / 0.896) 20.8%,rgb(0 0 0 / 0.972) 23.4%,rgb(0 0 0 / 1) 26%,#000 100%), linear-gradient(to left,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 2.6%,rgb(0 0 0 / 0.104) 5.2%,rgb(0 0 0 / 0.216) 7.8%,rgb(0 0 0 / 0.352) 10.4%,rgb(0 0 0 / 0.5) 13%,rgb(0 0 0 / 0.648) 15.6%,rgb(0 0 0 / 0.784) 18.2%,rgb(0 0 0 / 0.896) 20.8%,rgb(0 0 0 / 0.972) 23.4%,rgb(0 0 0 / 1) 26%,#000 100%), linear-gradient(to bottom,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 1%,rgb(0 0 0 / 0.104) 2%,rgb(0 0 0 / 0.216) 3%,rgb(0 0 0 / 0.352) 4%,rgb(0 0 0 / 0.5) 5%,rgb(0 0 0 / 0.648) 6%,rgb(0 0 0 / 0.784) 7%,rgb(0 0 0 / 0.896) 8%,rgb(0 0 0 / 0.972) 9%,rgb(0 0 0 / 1) 10%,#000 100%), linear-gradient(to bottom,rgb(0 0 0 / 1) 48%,rgb(0 0 0 / 0.972) 53.2%,rgb(0 0 0 / 0.896) 58.4%,rgb(0 0 0 / 0.784) 63.6%,rgb(0 0 0 / 0.648) 68.8%,rgb(0 0 0 / 0.5) 74%,rgb(0 0 0 / 0.352) 79.2%,rgb(0 0 0 / 0.216) 84.4%,rgb(0 0 0 / 0.104) 89.6%,rgb(0 0 0 / 0.028) 94.8%,rgb(0 0 0 / 0) 100%);
+  mask-image: linear-gradient(to right,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 2.6%,rgb(0 0 0 / 0.104) 5.2%,rgb(0 0 0 / 0.216) 7.8%,rgb(0 0 0 / 0.352) 10.4%,rgb(0 0 0 / 0.5) 13%,rgb(0 0 0 / 0.648) 15.6%,rgb(0 0 0 / 0.784) 18.2%,rgb(0 0 0 / 0.896) 20.8%,rgb(0 0 0 / 0.972) 23.4%,rgb(0 0 0 / 1) 26%,#000 100%), linear-gradient(to left,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 2.6%,rgb(0 0 0 / 0.104) 5.2%,rgb(0 0 0 / 0.216) 7.8%,rgb(0 0 0 / 0.352) 10.4%,rgb(0 0 0 / 0.5) 13%,rgb(0 0 0 / 0.648) 15.6%,rgb(0 0 0 / 0.784) 18.2%,rgb(0 0 0 / 0.896) 20.8%,rgb(0 0 0 / 0.972) 23.4%,rgb(0 0 0 / 1) 26%,#000 100%), linear-gradient(to bottom,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 1%,rgb(0 0 0 / 0.104) 2%,rgb(0 0 0 / 0.216) 3%,rgb(0 0 0 / 0.352) 4%,rgb(0 0 0 / 0.5) 5%,rgb(0 0 0 / 0.648) 6%,rgb(0 0 0 / 0.784) 7%,rgb(0 0 0 / 0.896) 8%,rgb(0 0 0 / 0.972) 9%,rgb(0 0 0 / 1) 10%,#000 100%), linear-gradient(to bottom,rgb(0 0 0 / 1) 48%,rgb(0 0 0 / 0.972) 53.2%,rgb(0 0 0 / 0.896) 58.4%,rgb(0 0 0 / 0.784) 63.6%,rgb(0 0 0 / 0.648) 68.8%,rgb(0 0 0 / 0.5) 74%,rgb(0 0 0 / 0.352) 79.2%,rgb(0 0 0 / 0.216) 84.4%,rgb(0 0 0 / 0.104) 89.6%,rgb(0 0 0 / 0.028) 94.8%,rgb(0 0 0 / 0) 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+@media (min-width: 1024px) {
+  .spotlight-mask {
+    -webkit-mask-image: linear-gradient(to right,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 5%,rgb(0 0 0 / 0.104) 10%,rgb(0 0 0 / 0.216) 15%,rgb(0 0 0 / 0.352) 20%,rgb(0 0 0 / 0.5) 25%,rgb(0 0 0 / 0.648) 30%,rgb(0 0 0 / 0.784) 35%,rgb(0 0 0 / 0.896) 40%,rgb(0 0 0 / 0.972) 45%,rgb(0 0 0 / 1) 50%,#000 100%), linear-gradient(to left,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 1.6%,rgb(0 0 0 / 0.104) 3.2%,rgb(0 0 0 / 0.216) 4.8%,rgb(0 0 0 / 0.352) 6.4%,rgb(0 0 0 / 0.5) 8%,rgb(0 0 0 / 0.648) 9.6%,rgb(0 0 0 / 0.784) 11.2%,rgb(0 0 0 / 0.896) 12.8%,rgb(0 0 0 / 0.972) 14.4%,rgb(0 0 0 / 1) 16%,#000 100%), linear-gradient(to bottom,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 0.9%,rgb(0 0 0 / 0.104) 1.8%,rgb(0 0 0 / 0.216) 2.7%,rgb(0 0 0 / 0.352) 3.6%,rgb(0 0 0 / 0.5) 4.5%,rgb(0 0 0 / 0.648) 5.4%,rgb(0 0 0 / 0.784) 6.3%,rgb(0 0 0 / 0.896) 7.2%,rgb(0 0 0 / 0.972) 8.1%,rgb(0 0 0 / 1) 9%,#000 100%), linear-gradient(to top,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 4.6%,rgb(0 0 0 / 0.104) 9.2%,rgb(0 0 0 / 0.216) 13.8%,rgb(0 0 0 / 0.352) 18.4%,rgb(0 0 0 / 0.5) 23%,rgb(0 0 0 / 0.648) 27.6%,rgb(0 0 0 / 0.784) 32.2%,rgb(0 0 0 / 0.896) 36.8%,rgb(0 0 0 / 0.972) 41.4%,rgb(0 0 0 / 1) 46%,#000 100%);
+    mask-image: linear-gradient(to right,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 5%,rgb(0 0 0 / 0.104) 10%,rgb(0 0 0 / 0.216) 15%,rgb(0 0 0 / 0.352) 20%,rgb(0 0 0 / 0.5) 25%,rgb(0 0 0 / 0.648) 30%,rgb(0 0 0 / 0.784) 35%,rgb(0 0 0 / 0.896) 40%,rgb(0 0 0 / 0.972) 45%,rgb(0 0 0 / 1) 50%,#000 100%), linear-gradient(to left,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 1.6%,rgb(0 0 0 / 0.104) 3.2%,rgb(0 0 0 / 0.216) 4.8%,rgb(0 0 0 / 0.352) 6.4%,rgb(0 0 0 / 0.5) 8%,rgb(0 0 0 / 0.648) 9.6%,rgb(0 0 0 / 0.784) 11.2%,rgb(0 0 0 / 0.896) 12.8%,rgb(0 0 0 / 0.972) 14.4%,rgb(0 0 0 / 1) 16%,#000 100%), linear-gradient(to bottom,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 0.9%,rgb(0 0 0 / 0.104) 1.8%,rgb(0 0 0 / 0.216) 2.7%,rgb(0 0 0 / 0.352) 3.6%,rgb(0 0 0 / 0.5) 4.5%,rgb(0 0 0 / 0.648) 5.4%,rgb(0 0 0 / 0.784) 6.3%,rgb(0 0 0 / 0.896) 7.2%,rgb(0 0 0 / 0.972) 8.1%,rgb(0 0 0 / 1) 9%,#000 100%), linear-gradient(to top,rgb(0 0 0 / 0) 0%,rgb(0 0 0 / 0.028) 4.6%,rgb(0 0 0 / 0.104) 9.2%,rgb(0 0 0 / 0.216) 13.8%,rgb(0 0 0 / 0.352) 18.4%,rgb(0 0 0 / 0.5) 23%,rgb(0 0 0 / 0.648) 27.6%,rgb(0 0 0 / 0.784) 32.2%,rgb(0 0 0 / 0.896) 36.8%,rgb(0 0 0 / 0.972) 41.4%,rgb(0 0 0 / 1) 46%,#000 100%);
+  }
+}
+
+/* "Open to roles" indicator: a green LED that glows and pulses outwards. */
+.status-led {
+  position: relative;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #34d17f;
+  box-shadow:
+    0 0 6px 1px rgb(52 209 127 / 0.75),
+    0 0 14px 2px rgb(52 209 127 / 0.35);
+  animation: led-glow 2s ease-in-out infinite;
+}
+.status-led::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #34d17f;
+  animation: led-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes led-glow {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow:
+      0 0 6px 1px rgb(52 209 127 / 0.75),
+      0 0 14px 2px rgb(52 209 127 / 0.35);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow:
+      0 0 2px 0 rgb(52 209 127 / 0.4),
+      0 0 6px 1px rgb(52 209 127 / 0.15);
+  }
+}
+@keyframes led-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  80%,
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+/* A band of light sweeps across the status text, left to right, then pauses. The base colour is the normal text
+   colour, so the text reads the same when the animation is off. */
+.status-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    rgb(var(--c-ink-2)) 0%,
+    rgb(var(--c-ink-2)) 36%,
+    #ffffff 47%,
+    #ffffff 53%,
+    rgb(var(--c-ink-2)) 64%,
+    rgb(var(--c-ink-2)) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: status-sweep 4.5s ease-in-out infinite;
+}
+@keyframes status-sweep {
+  0% {
+    background-position: 100% 0;
+  }
+  45%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+/* The same light sweep across the proof panel, starting a moment after the status line: one cascade per cycle.
+   A soft band of light over the whole panel, so numbers, labels and the glass background all catch it. */
+.stats-sweep {
+  position: relative;
+  overflow: hidden;
+}
+.stats-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 38%,
+    rgb(255 255 255 / 0.07) 45%,
+    rgb(255 255 255 / 0.13) 50%,
+    rgb(255 255 255 / 0.07) 55%,
+    transparent 62%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  animation: status-sweep 4.5s ease-in-out 1.2s infinite;
+}
+
+/* "Both" marker for skills: a filled dot followed by a hollow one. */
+.dot-both {
+  box-shadow:
+    8px 0 0 -1.5px var(--color-surface),
+    8px 0 0 0 var(--color-muted);
+  margin-right: 8px;
+}
+.skill-hit .dot-both {
+  box-shadow:
+    8px 0 0 -1.5px var(--color-ink),
+    8px 0 0 0 var(--color-bg);
+}
+
+/* Sections ease in as they scroll into view, where the browser supports it. No JS, nothing hidden without support. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
