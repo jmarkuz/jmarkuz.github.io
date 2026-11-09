@@ -111,7 +111,7 @@ export const person = {
   tagline: "Backend systems for banking, telecom and iGaming.",
   intro:
     "10+ years of Java and Spring Boot: microservices, distributed and high-load systems, event-driven messaging, and the modernisation of platforms that cannot stop.",
-  status: "Open to Senior Java Developer roles · Prague, CZ",
+  status: "Open to Senior Java Developer roles",
   /** One line a recruiter needs before writing: where, legal status, relocation. */
   availabilityShort: "Prague, CZ · authorized to work in CZ · open to EU relocation",
   location: "Prague, Czech Republic",

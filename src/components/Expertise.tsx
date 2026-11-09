@@ -1,6 +1,6 @@
 "use client";
 
-import { about, expertise } from "@/content/profile";
+import { about, expertise, person } from "@/content/profile";
 import { matches, useLens } from "./LensProvider";
 import { RichText } from "./RichText";
 import { SectionHeading } from "./SectionHeading";
@@ -43,6 +43,29 @@ export function Expertise() {
           );
         })}
       </ul>
+      {/* Facts European recruiters ask first: English level, degree, certificates. */}
+      <dl className="mt-8 grid gap-x-10 gap-y-5 border-t border-line pt-6 md:grid-cols-3">
+        <div>
+          <dt className="font-mono text-[12px] tracking-[0.06em] text-faint uppercase">Languages</dt>
+          <dd className="mt-1.5 grid gap-0.5 text-[15px] text-ink-2">
+            {person.languages.map((l) => (
+              <span key={l}>{l}</span>
+            ))}
+          </dd>
+        </div>
+        <div>
+          <dt className="font-mono text-[12px] tracking-[0.06em] text-faint uppercase">Education</dt>
+          <dd className="mt-1.5 text-[15px] text-ink-2">{person.education}</dd>
+        </div>
+        <div>
+          <dt className="font-mono text-[12px] tracking-[0.06em] text-faint uppercase">Certifications</dt>
+          <dd className="mt-1.5 grid gap-0.5 text-[15px] text-ink-2">
+            {person.certifications.map((c) => (
+              <span key={c}>{c}</span>
+            ))}
+          </dd>
+        </div>
+      </dl>
     </section>
   );
 }
