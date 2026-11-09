@@ -48,7 +48,7 @@ export function Hero() {
       </div>
 
       <div
-        className={`${WRAP} pt-[261px] pb-6 md:pt-[334px] md:pb-8 lg:pt-[108px]`}
+        className={`${WRAP} pt-[261px] pb-6 md:pt-[334px] md:pb-8 lg:pt-[84px] lg:pb-6`}
       >
         <p className="flex items-center gap-2.5 text-[14px] text-ink-2">
           <span aria-hidden className="status-led" />
@@ -58,15 +58,15 @@ export function Hero() {
           {person.name}
         </h1>
         <p className="mt-2 text-[24px] leading-tight font-semibold tracking-[-0.02em] text-ink md:mt-3 md:text-[30px] lg:text-[34px]">{person.title}</p>
-        <p className="mt-2 max-w-[560px] text-lg tracking-[-0.01em] text-ink-2 md:mt-3 md:text-[22px]">
+        <p className="mt-2 max-w-[600px] text-[17px] leading-snug tracking-[-0.01em] text-ink-2 md:mt-3 md:text-[20px] lg:max-w-[760px] lg:text-[19px]">
           {person.tagline}
         </p>
-        <p className="mt-3 max-w-[540px] text-base text-muted md:text-[17px]">
+        <p className="mt-3 max-w-[600px] text-base text-muted md:text-[17px] lg:mt-2 lg:max-w-[700px] lg:text-[16px]">
           {person.intro}
         </p>
 
         {/* Call to action: one primary action, two alternatives. */}
-        <div className="mt-6 flex max-w-[700px] flex-wrap items-center gap-2.5">
+        <div className="mt-6 flex max-w-[700px] lg:mt-4 flex-wrap items-center gap-2.5">
           <a
             href={mailtoHref()}
             className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-ink px-5 text-[15px] font-semibold whitespace-nowrap text-bg hover:bg-ink-2 min-[420px]:flex-none"
@@ -99,7 +99,7 @@ export function Hero() {
           )}
         </div>
         {/* Location, legal status and relocation on a line of their own, so a recruiter sees them at once. */}
-        <p className="mt-4 flex max-w-[700px] items-start gap-2.5 text-[15px] leading-snug text-ink md:text-[16px]">
+        <p className="mt-4 flex max-w-[700px] items-start lg:mt-3 gap-2.5 text-[15px] leading-snug text-ink md:text-[16px]">
           <PinIcon className="mt-[3px] size-[18px] flex-none text-ink-2" />
           <span>
             {person.availabilityShort.split(" · ").map((part, i) => (
@@ -112,10 +112,11 @@ export function Hero() {
                 <span className={i === 0 ? "font-semibold" : "text-ink-2"}>{part}</span>
               </span>
             ))}
+            <span className="mt-0.5 block text-[13.5px] text-muted">{person.availabilityNote}</span>
           </span>
         </p>
 
-        <div className="mt-5 max-w-[560px]">
+        <div className="mt-5 max-w-[560px] lg:mt-3.5 lg:max-w-[640px]">
           <p className="mb-2 font-mono text-[12px] tracking-[0.06em] text-faint uppercase">
             Core stack · practices
           </p>
@@ -139,7 +140,7 @@ export function Hero() {
           </ul>
         </div>
 
-        <dl className="stats-sweep mt-8 grid grid-cols-2 rounded-xl border border-line-2 bg-surface/80 backdrop-blur-sm md:mt-10 md:grid-cols-3 lg:grid-cols-6">
+        <dl className="stats-sweep mt-8 grid grid-cols-2 rounded-xl border border-line-2 bg-surface/80 backdrop-blur-sm md:mt-10 lg:mt-6 md:grid-cols-3 lg:grid-cols-6">
           {proof.map((item, i) => (
             <div
               key={item.value}

@@ -28,7 +28,7 @@ export default function Home() {
         <div aria-hidden data-dark-zone data-dark-fraction="0.5" className="h-[96px] md:h-[128px] bg-[linear-gradient(to_bottom,rgb(11_12_14)_0%,rgb(21_22_24)_12%,rgb(48_49_50)_25%,rgb(86_86_86)_38%,rgb(129_129_128)_50%,rgb(172_172_170)_62%,rgb(210_209_206)_75%,rgb(237_236_232)_88%,rgb(247_246_242)_100%)]" />
         <div className="mx-auto max-w-[1240px] px-[18px] md:px-9">
           <section id="experience" aria-labelledby="experience-title">
-            <SectionHeading no="01" id="experience-title" title="Experience" lead="Career as a distributed trace, oldest role first." />
+            <SectionHeading no="01" id="experience-title" title="Experience" lead="Career as a distributed trace, newest role first." />
             <LensBar />
             <Trace />
             <CtaStrip className="mt-6 lg:hidden" />

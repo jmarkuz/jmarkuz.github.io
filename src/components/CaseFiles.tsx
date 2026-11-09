@@ -20,7 +20,7 @@ export function CaseFiles() {
       <SectionHeading
         no="04"
         id="pet-projects-title"
-        title="Pet projects"
+        title="Personal projects"
         lead="Backend work is invisible, so each project shows its architecture first."
       />
       <div className="grid gap-[18px]">
@@ -36,6 +36,10 @@ export function CaseFiles() {
             >
               <div className="border-b border-line p-5 md:border-r md:border-b-0 md:px-[30px] md:py-7">
                 <p className="font-mono text-[12.5px] text-muted">{p.kind}</p>
+                <p className="mt-1.5 inline-flex items-center gap-2 rounded-full border border-line-2 px-2.5 py-0.5 font-mono text-[11.5px] text-ink-2">
+                  <span aria-hidden className="size-1.5 rounded-full bg-ink-2" />
+                  {p.status}
+                </p>
                 <h3 id={`${p.id}-title`} className="mt-1 mb-3 text-[26px] font-semibold tracking-[-0.03em] md:text-[30px]">
                   {p.name}
                 </h3>

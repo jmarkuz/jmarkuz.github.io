@@ -20,6 +20,8 @@ const pill: Record<Domain, string> = {
 };
 
 const T0 = toMonth(companies[0]!.start);
+/** Newest role first, like a CV; the time axis still runs left to right. */
+const newestFirst = [...companies].reverse();
 
 /** Year gridlines and the label column share one grid so bars line up with the axis. */
 const ROW = "grid grid-cols-1 md:grid-cols-[310px_minmax(0,1fr)] lg:grid-cols-[330px_minmax(0,1fr)]";
@@ -98,8 +100,8 @@ export function Trace() {
             </div>
           </div>
 
-          <ul aria-label="Companies, oldest first">
-            {companies.map((c) => (
+          <ul aria-label="Companies, newest first">
+            {newestFirst.map((c) => (
               <CompanyRows
                 key={c.id}
                 company={c}
@@ -214,7 +216,7 @@ function CompanyRows({
 
       {c.roles && (
         <ul className="hidden md:block" aria-label={`Titles at ${c.name}`}>
-          {c.roles.map((r) => {
+          {[...c.roles].reverse().map((r) => {
             const rs = toMonth(r.start);
             const re = endMonth(r.end, now);
             return (
@@ -293,6 +295,19 @@ function DetailPanel({ company: c, now, lens }: { company: Company; now: number;
               <span aria-hidden className={`mt-[7px] size-1.5 rounded-full ${state === "hit" ? "bg-ink ring-4 ring-ink/10" : "bg-line-2"}`} />
               <span>
                 <RichText text={a.text} />
+                {a.detail && (
+                  <details className="group mt-1">
+                    <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 rounded px-0.5 font-mono text-[12px] text-muted hover:text-ink">
+                      <span aria-hidden className="inline-block transition-transform group-open:rotate-90">
+                        ▸
+                      </span>
+                      Technical details
+                    </summary>
+                    <p className="mt-1 text-[14px] leading-[1.45] text-muted">
+                      <RichText text={a.detail} />
+                    </p>
+                  </details>
+                )}
               </span>
             </li>
           );

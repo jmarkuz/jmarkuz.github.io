@@ -20,7 +20,10 @@ export type LensId =
 export type YearMonth = `${number}-${string}`;
 
 export interface Achievement {
+  /** The outcome, in a sentence. Shown first. */
   text: string;
+  /** Technical implementation, shown behind "Technical details" in the trace and inline in the plain-text list. */
+  detail?: string;
   lenses: LensId[];
 }
 
@@ -50,6 +53,8 @@ export interface Skill {
   name: string;
   use: SkillUse;
   lenses?: LensId[];
+  /** Company ids where a professional skill is evidenced in the role descriptions; shown as a tooltip. */
+  where?: string[];
   /** One of the four technologies that define the profile; drawn slightly stronger. */
   key?: boolean;
 }
@@ -71,7 +76,11 @@ export interface CaseStudy {
   summary: string;
   challenge: string;
   approach: string[];
+  /** The key engineering decision, in one sentence. Only what the author actually decided; no invented alternatives. */
+  decision: string;
   impact: string;
+  /** The three featured cases are open for reading; the rest sit in a secondary list. */
+  featured?: boolean;
   lenses: LensId[];
 }
 
@@ -90,15 +99,17 @@ export interface CaseFile {
   hardParts: string;
   stack: string;
   repo: string;
+  /** Only what can be verified: public repository, recent activity. No claims about production use. */
+  status: string;
   diagram: { caption: string; flow: string };
   image: { src: string; alt: string; width: number; height: number };
 }
 
 export const site = {
   url: "https://jmarkuz.github.io",
-  title: "Marian Kuziv · Senior Java Developer (Spring Boot, Microservices, Kubernetes) · Prague",
+  title: "Marian Kuziv | Senior Java Developer | Prague",
   description:
-    "Senior Java Developer (Senior Java Software Engineer, Senior Java Backend Engineer) in Prague: 10+ years of Java 17/21, Spring Boot, microservices, RabbitMQ, PostgreSQL, Redis, Kubernetes and AWS across banking, telecom and iGaming. Open to Senior Java Developer roles.",
+    "Senior Java Developer in Prague with 10+ years of experience in Java, Spring Boot, microservices and distributed systems across banking, telecom and iGaming. Open to Senior Java Developer roles in Czechia and the EU.",
 };
 
 export const person = {
@@ -108,15 +119,16 @@ export const person = {
   altTitle: "Senior Java Software Engineer",
   /** Further titles recruiters search for; used in metadata and structured data only, not as a heading. */
   searchTitles: ["Senior Java Backend Engineer", "Senior Backend Engineer"],
-  tagline: "Backend systems for banking, telecom and iGaming.",
+  tagline: "Backend Architecture · Distributed Systems · High-Performance Applications",
   intro:
-    "10+ years of Java and Spring Boot: microservices, distributed and high-load systems, event-driven messaging, and the modernisation of platforms that cannot stop.",
+    "10+ years of Java engineering experience building scalable, reliable backend systems for business-critical platforms across banking, telecom and iGaming. Specialized in Java, Spring Boot, microservices, distributed systems, event-driven architecture and performance optimization.",
   status: "Open to Senior Java Developer roles",
   /** One line a recruiter needs before writing: where, legal status, relocation. */
-  availabilityShort: "Prague, CZ · authorized to work in CZ · open to EU relocation",
-  location: "Prague, Czech Republic",
+  availabilityShort: "Based in Prague, Czechia · Authorized to work in Czechia · Open to EU relocation",
+  availabilityNote: "Immigration support may be required depending on destination.",
+  location: "Prague, Czechia",
   availability:
-    "Based in Prague and authorized to work in the Czech Republic. Open to relocation within the EU (visa sponsorship required outside the Czech Republic).",
+    "Based in Prague, Czechia · Authorized to work in Czechia · Open to EU relocation (immigration support may be required depending on destination).",
   email: "mi.kuziv@gmail.com",
   /** 4:5 portrait on a black background for the hero, in three widths; `share` is a square JPEG for search engines. */
   photo: {
@@ -139,11 +151,11 @@ export const person = {
 };
 
 /** Working practices confirmed by the author. Shown next to the core stack. */
-export const practices = ["TDD", "Agile / Scrum", "Code review", "Mentoring"];
+export const practices = ["Led a team of 3 devs", "Mentoring", "Code review", "TDD", "Agile / Scrum"];
 
 /** Most-searched Senior Java keywords that are backed by professional work. Kafka is deliberately not here (personal projects only). */
 export const coreStack = [
-  "Java 17 / 21",
+  "Java 17 / 21 / 25",
   "Spring Boot",
   "Microservices",
   "REST APIs",
@@ -194,15 +206,10 @@ export const companies: Company[] = [
     id: "luxoft",
     name: "Luxoft",
     domain: "bank",
-    title: "Junior Java Developer",
+    title: "Java Developer (Intern → Junior)",
     focus: "Investment banking & trade processing",
     start: "2016-04",
     end: "2018-03",
-    roles: [
-      { title: "Java Intern", start: "2016-04", end: "2016-08" },
-      { title: "Junior Java Developer", start: "2016-08", end: "2017-05" },
-      { title: "Junior Java-Backend Developer", start: "2017-05", end: "2018-03" },
-    ],
     achievements: [
       {
         text: "Built an **event-driven** order-processing pipeline for an OTC-derivatives trade-processing system: **10,000+ transactions/day**, guaranteed ordering",
@@ -292,7 +299,7 @@ export const companies: Company[] = [
     ],
     achievements: [
       {
-        text: "**Led a team of Java developers** after the previous lead left: **mentoring** and technical guidance, technical design, **code review**, communication with other teams",
+        text: "**Led a team of 3 Java developers** after the previous lead left: **mentoring** and technical guidance, technical design, **code review**, communication with other teams",
         lenses: ["leadership"],
       },
       {
@@ -300,11 +307,12 @@ export const companies: Company[] = [
         lenses: ["microservices", "integrations"],
       },
       {
-        text: "Migrated a critical platform service from a monolith to **microservices**: better resource use, scalability and performance, and independent deployment",
+        text: "Contributed to the migration of a critical platform service from a monolith to **microservices**: better resource use, scalability and performance, and independent deployment",
         lenses: ["modernisation", "microservices"],
       },
       {
-        text: "Built **rate limiting** with **Bucket4j and Redis** to protect the APIs from DDoS and resource abuse and keep service quality consistent",
+        text: "Protected the APIs from DDoS and resource abuse with **rate limiting**, keeping service quality consistent",
+        detail: "Built with **Bucket4j** and **Redis**.",
         lenses: ["reliability", "performance", "cloud"],
       },
       {
@@ -350,23 +358,28 @@ export const companies: Company[] = [
     end: null,
     achievements: [
       {
-        text: "Re-architected a business-critical asynchronous processing flow in a **distributed**, high-load system: one polling job became **two independent streams** with dedicated thread pools (**concurrency**), batched **SKIP LOCKED** fetching on **PostgreSQL** and preserved per-entity ordering, released behind a **feature flag**, so it can be enabled or rolled back by configuration",
+        text: "Re-architected a business-critical **asynchronous processing** flow in a **distributed**, high-load system so retries no longer compete with new work, released behind a **feature flag** that can be enabled or rolled back by configuration",
+        detail: "One polling job became **two independent streams** with dedicated thread pools (**concurrency**), batched **SKIP LOCKED** fetching on **PostgreSQL** and preserved per-entity ordering.",
         lenses: ["reliability", "performance", "messaging"],
       },
       {
-        text: "Migrated payments from a legacy provider adapter to a **Payment Gateway** architecture and unified routing across services, reducing coupling; later moved to the gateway's v2 API",
+        text: "Migrated payments from a legacy provider adapter to a **Payment Gateway** architecture, reducing coupling between services",
+        detail: "Removed the legacy adapter, unified payment routing across services and later moved to the gateway's v2 API.",
         lenses: ["payments", "microservices", "modernisation", "integrations"],
       },
       {
-        text: "Improved response time and stability of payment and retail paths with **shared Redis caching** (TTL-based, replacing a local cache) and a reactive Redis client with tuned timeouts",
+        text: "Improved response time and stability of payment and retail paths with **shared Redis caching**",
+        detail: "TTL-based cache replacing a local cache, and a reactive Redis client with tuned timeouts.",
         lenses: ["performance", "payments"],
       },
       {
-        text: "Tuned risk-management workloads: critical **PostgreSQL query optimisation**, composite and **concurrently built indexes** (no write blocking in production), **Kubernetes** HPA and CPU/memory tuning, lock-contention fixes with **JPA / Hibernate** pessimistic locking",
+        text: "Removed performance bottlenecks in risk-management workloads across the database, the application and **Kubernetes**",
+        detail: "Critical **PostgreSQL query optimisation**, composite and **concurrently built indexes** (no write blocking in production), HPA and CPU/memory tuning, lock-contention fixes with **JPA / Hibernate** pessimistic locking.",
         lenses: ["performance", "reliability", "payments", "cloud"],
       },
       {
-        text: "Carried out staged **platform upgrades** across the service landscape: Spring Boot 3, Java 17 → 21, **RabbitMQ 4.0** (legacy queues and bindings removed) and Spring Boot 4 / Java 25 in 2026",
+        text: "Carried out staged **platform upgrades** across the service landscape: Java 17 → 21, Spring Boot 3, **RabbitMQ 4.0**, then Spring Boot 4 / Java 25 in 2026",
+        detail: "Legacy RabbitMQ queues and bindings were removed as part of the 4.0 upgrade.",
         lenses: ["modernisation", "messaging", "microservices", "cloud"],
       },
       {
@@ -397,8 +410,12 @@ export const companies: Company[] = [
         text: "Investigated and fixed critical production issues across service boundaries, using **Datadog** monitoring; designed services for **scalability** and **system-design** trade-offs",
         lenses: ["reliability", "microservices", "cloud"],
       },
+      {
+        text: "Used **AI Coding Tools** (AWS Kiro, Claude Code) for spec-driven development: generating code from specifications, accelerating code review with AI-assisted feedback, auto-generating documentation and test cases",
+        lenses: ["quality", "modernisation"],
+      },
     ],
-    stack: ["Java 21 / 25", "Spring Boot 3 / 4", "PostgreSQL", "RabbitMQ 4.0", "Redis", "Kubernetes", "Docker", "GitLab CI/CD", "Datadog", "Testcontainers"],
+    stack: ["Java 21 / 25", "Spring Boot 3 / 4", "PostgreSQL", "RabbitMQ 4.0", "Redis", "Kubernetes", "Docker", "GitLab CI/CD", "Datadog", "Testcontainers", "SonarQube", "WebSocket", "AWS Kiro", "Claude Code"],
   },
 ];
 
@@ -449,8 +466,8 @@ export const expertise: ExpertiseArea[] = [
   {
     no: "06",
     title: "Technical leadership & collaboration",
-    text: "Contributing beyond individual implementation tasks.",
-    points: ["Technical decisions and design", "Code review", "Mentoring developers", "Led a Java team", "Agile / Scrum, cross-team work"],
+    text: "Owning technical decisions and helping the team deliver.",
+    points: ["Technical decisions and design", "Code review", "Mentoring developers", "Led a team of 3 Java developers", "Agile / Scrum, cross-team work"],
     lenses: ["leadership"],
   },
 ];
@@ -472,7 +489,10 @@ export const caseStudies: CaseStudy[] = [
       "Kept per-entity ordering and used exponential back-off for retries",
       "Released behind a feature flag, so it can be enabled or rolled back by configuration",
     ],
+    decision:
+      "Separate retries from first-pass work instead of sharing one polling job, and ship the change behind a feature flag so it can be rolled back by configuration.",
     impact: "The same set of records is processed as before, with retries no longer blocking new work, and a safe way to switch the change on or off.",
+    featured: true,
     lenses: ["reliability", "performance", "messaging", "microservices"],
   },
   {
@@ -481,16 +501,19 @@ export const caseStudies: CaseStudy[] = [
     category: "Backend architecture · platform modernisation",
     where: "Atlaslive · iGaming",
     stack: "Java 21 · Spring Boot · RabbitMQ · Redis · PostgreSQL",
-    summary: "From a legacy provider adapter to a Payment Gateway with one routing topology.",
+    summary: "From a legacy provider adapter to a Payment Gateway architecture.",
     challenge:
-      "A legacy payment-provider adapter limited extensibility, and payment routing and responsibilities were spread across services.",
+      "A legacy payment-provider adapter limited extensibility, and payment responsibilities were spread across services.",
     approach: [
       "Migrated the integration to a Payment Gateway architecture and removed the legacy adapter; later moved to the gateway's v2 API",
-      "Routed withdrawal-status requests through the billing service, so there is one routing topology",
+      "Unified payment routing across services to reduce coupling",
       "Replaced a local cache with a shared, TTL-based Redis cache for payment-method lookups",
       "Carried the services through the Java 21 and RabbitMQ 4.0 upgrades",
     ],
-    impact: "One routing topology with lower coupling between services, and faster, steadier payment lookups.",
+    decision:
+      "Replace the legacy provider adapter with a Payment Gateway architecture rather than extending it, and use a shared TTL-based Redis cache instead of a local one.",
+    impact: "Lower coupling between services, and faster, steadier payment lookups.",
+    featured: true,
     lenses: ["payments", "modernisation", "integrations"],
   },
   {
@@ -498,16 +521,18 @@ export const caseStudies: CaseStudy[] = [
     title: "From a monolith to microservices",
     category: "Architecture · migration",
     where: "Brightfin · telecom",
-    stack: "Java · Spring Boot · Microservices · Bazel · AWS",
-    summary: "A critical platform service moved out of a monolith, with a mono-repo build.",
+    stack: "Java · Spring Boot · Microservices · AWS",
+    summary: "A critical platform service moved out of a monolith into an independently deployable microservice.",
     challenge:
       "A critical service of a telecom expense and device management platform lived inside a monolith, which limited resource usage, scalability, performance and independent deployment.",
     approach: [
-      "Migrated the service from the monolith to microservices",
+      "Contributed to migrating the service from the monolith to microservices",
       "Optimised performance and resource usage and gave infrastructure guidance, in collaboration with the AWS architect and DevOps",
-      "Took part in moving the code to a mono-repo built with Bazel",
     ],
+    decision:
+      "Move the critical service out of the monolith so it can be deployed and scaled independently, rather than leaving it coupled to the rest of the monolith, which limited its resource usage, scalability and performance.",
     impact: "Better resource usage, scalability and performance, and services that can be deployed independently.",
+    featured: true,
     lenses: ["modernisation", "microservices", "performance", "cloud"],
   },
   {
@@ -524,6 +549,8 @@ export const caseStudies: CaseStudy[] = [
       "Protected the APIs from DDoS and resource abuse and kept service quality consistent",
       "Implemented certificate management with Vault and an auto-update setup that streamlined the process",
     ],
+    decision:
+      "Protect the APIs with rate limiting backed by Redis (Bucket4j) and automate certificate management with Vault.",
     impact: "More predictable service quality under heavy or abusive traffic, and a simpler, automated certificate process.",
     lenses: ["reliability", "performance", "cloud"],
   },
@@ -542,36 +569,22 @@ export const caseStudies: CaseStudy[] = [
       "Added device-management functions: enrollment, full and partial sync, wipe, activation, suspension, notifications, location lookup",
       "Built a mid-server for secure encrypted file transfer between SFTP and ServiceNow, and backed the integrations with unit, integration and end-to-end tests",
     ],
+    decision:
+      "Put every carrier and MDM provider behind one backend, so each provider's own API fits the same flows (MACD, sync, device functions).",
     impact: "One backend to manage, secure and monitor devices across many providers.",
     lenses: ["integrations", "microservices", "reliability"],
   },
 ];
 
 export const principles: Principle[] = [
-  { title: "Ownership", text: "I take responsibility for the quality and outcome of my work, spot issues early, and look beyond the immediate implementation." },
-  { title: "Pragmatic architecture", text: "I favour solutions that solve real engineering problems without adding unnecessary complexity." },
-  { title: "Reliability first", text: "Business-critical systems need predictable behaviour, thoughtful error handling and well-tested code." },
-  { title: "Continuous improvement", text: "I look for ways to improve architecture, workflows, performance and code quality." },
-  { title: "Collaboration", text: "I value open communication, constructive feedback and helping teammates succeed." },
+  { title: "Ownership", text: "I own outcomes, not tickets: I spot problems early and follow a change through delivery to production." },
+  { title: "Pragmatic architecture", text: "I choose the simplest design that solves the real problem, and weigh the trade-offs before adding complexity." },
+  { title: "Reliability first", text: "For business-critical systems I design for failure: retries, idempotency, feature-flagged rollouts and tests." },
+  { title: "Continuous improvement", text: "I pay down technical debt and keep platforms current, from runtime upgrades to test coverage." },
+  { title: "Collaboration", text: "I review code, mentor developers and work with other teams on design." },
 ];
 
 export const caseFiles: CaseFile[] = [
-  {
-    id: "readybell",
-    name: "ReadyBell",
-    kind: "personal project · multi-tenant SaaS",
-    lenses: ["messaging", "integrations", "microservices"],
-    problem:
-      "Restaurant customers wait without knowing when an order is ready. A receipt QR code opens a tracking page and a Web Push fires the moment it is ready. No app, no account.",
-    design:
-      "DDD + hexagonal modular monolith, six bounded contexts. Domain events go through a port, so a broker can replace the in-process bus later.",
-    hardParts:
-      "Tenant isolation in the query layer (Hibernate @Filter); order state machine with optimistic locking; SSE with polling fallback; stateless replicas with state in Redis.",
-    stack: "Java 21 · Spring Boot 3.4 · PostgreSQL · Redis · React + TypeScript · jqwik",
-    repo: "https://github.com/jmarkuz/ReadyBell",
-    diagram: { caption: "event flow", flow: "order → ready → push" },
-    image: { src: "/projects/readybell-dashboard.webp", alt: "ReadyBell staff dashboard", width: 1200, height: 597 },
-  },
   {
     id: "vacancy-tracker",
     name: "Vacancy Tracker",
@@ -585,8 +598,26 @@ export const caseFiles: CaseFile[] = [
       "Cross-source deduplication; opt-in AI tailoring with a fact check before saving; module boundaries enforced by ArchUnit; 46 recorded ADRs.",
     stack: "Java 21 · Spring Boot 3.5 · PostgreSQL · Flyway · Preact + TypeScript · Testcontainers · Playwright",
     repo: "https://github.com/jmarkuz/vacancy-tracker",
+    status: "Public repository · in active development",
     diagram: { caption: "pipeline", flow: "collect → score → track" },
     image: { src: "/projects/vacancy-tracker-dashboard.webp", alt: "Vacancy Tracker dashboard", width: 1200, height: 750 },
+  },
+  {
+    id: "readybell",
+    name: "ReadyBell",
+    kind: "personal project · multi-tenant SaaS",
+    lenses: ["messaging", "integrations", "microservices"],
+    problem:
+      "Restaurant customers wait without knowing when an order is ready. A receipt QR code opens a tracking page and a Web Push fires the moment it is ready. No app, no account.",
+    design:
+      "DDD + hexagonal modular monolith, six bounded contexts. Domain events go through a port, so a broker can replace the in-process bus later.",
+    hardParts:
+      "Tenant isolation in the query layer (Hibernate @Filter); order state machine with optimistic locking; SSE with polling fallback; stateless replicas with state in Redis.",
+    stack: "Java 21 · Spring Boot 3.4 · PostgreSQL · Redis · React + TypeScript · jqwik",
+    repo: "https://github.com/jmarkuz/ReadyBell",
+    status: "Public repository · in active development",
+    diagram: { caption: "event flow", flow: "order → ready → push" },
+    image: { src: "/projects/readybell-dashboard.webp", alt: "ReadyBell staff dashboard", width: 1200, height: 597 },
   },
 ];
 
@@ -605,7 +636,7 @@ export const skillGroups: { group: string; skills: Skill[] }[] = [
       { name: "Java 17 / 21 / 25", use: "both", lenses: ["modernisation"], key: true },
       { name: "SQL", use: "both" },
       { name: "Concurrency / multithreading", use: "work", lenses: ["performance"] },
-      { name: "Scala", use: "work" },
+      { name: "Scala", use: "work", where: ["luxoft"] },
       { name: "TypeScript", use: "personal" },
     ],
   },
@@ -618,7 +649,7 @@ export const skillGroups: { group: string; skills: Skill[] }[] = [
       { name: "Spring Cloud", use: "work", lenses: ["microservices"] },
       { name: "Spring Batch", use: "work", lenses: ["reliability"] },
       { name: "Spring Cloud Gateway", use: "work", lenses: ["microservices"] },
-      { name: "Bucket4j", use: "work", lenses: ["reliability", "performance"] },
+      { name: "Bucket4j", use: "work", lenses: ["reliability", "performance"], where: ["brightfin"] },
       { name: "React", use: "personal" },
       { name: "Preact", use: "personal" },
       { name: "Vite", use: "personal" },
@@ -638,7 +669,7 @@ export const skillGroups: { group: string; skills: Skill[] }[] = [
       { name: "REST / SOAP APIs", use: "work", lenses: ["integrations", "microservices"] },
       { name: "OpenAPI / Swagger", use: "work", lenses: ["integrations"] },
       { name: "OpenFeign", use: "work", lenses: ["integrations"] },
-      { name: "WebSocket", use: "work", lenses: ["messaging"] },
+      { name: "WebSocket", use: "work", lenses: ["messaging"], where: ["atlaslive"] },
     ],
   },
   {
@@ -664,9 +695,16 @@ export const skillGroups: { group: string; skills: Skill[] }[] = [
       { name: "Docker", use: "both", lenses: ["microservices", "cloud"] },
       { name: "Helm", use: "work", lenses: ["cloud"] },
       { name: "Terraform", use: "work", lenses: ["cloud"] },
-      { name: "Vault", use: "work", lenses: ["cloud", "reliability"] },
+      { name: "Vault", use: "work", lenses: ["cloud", "reliability"], where: ["brightfin"] },
       { name: "GitHub Actions", use: "both", lenses: ["cloud"] },
       { name: "GitLab CI/CD", use: "work", lenses: ["cloud", "quality"] },
+    ],
+  },
+  {
+    group: "AI & Development Tools",
+    skills: [
+      { name: "AWS Kiro", use: "work", where: ["atlaslive"] },
+      { name: "Claude Code", use: "work", where: ["atlaslive"] },
     ],
   },
   {
@@ -685,13 +723,13 @@ export const skillGroups: { group: string; skills: Skill[] }[] = [
       { name: "JUnit", use: "both", lenses: ["quality"] },
       { name: "Mockito", use: "work", lenses: ["quality"] },
       { name: "Testcontainers", use: "both", lenses: ["quality"] },
-      { name: "SonarQube", use: "work", lenses: ["quality"] },
+      { name: "SonarQube", use: "work", lenses: ["quality"], where: ["atlaslive"] },
       { name: "ArchUnit", use: "personal" },
       { name: "jqwik", use: "personal" },
       { name: "Playwright", use: "personal" },
       { name: "Gradle", use: "both" },
       { name: "Maven", use: "both" },
-      { name: "Bazel", use: "work" },
+      { name: "Bazel", use: "work", where: ["brightfin"] },
     ],
   },  {
     group: "Practices",

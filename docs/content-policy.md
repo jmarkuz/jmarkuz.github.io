@@ -8,11 +8,12 @@ The site and this repository are public. Work experience is described in generic
 - Industry and domain at a high level: banking, telecom, iGaming; "risk", "retail", "bonus", "payments".
 - Technologies, patterns and techniques: Java, Spring Boot, RabbitMQ, Redis, PostgreSQL, Kubernetes, idempotency, `SKIP LOCKED`, feature flags, concurrent index builds.
 - Qualitative outcomes: "improved response time and stability", "reduced coupling", "raised test coverage to 80%+".
-- Measured numbers only when they are the author's own and non-confidential.
+- Measured numbers only when they are the author's own and non-confidential. Figures already on the public CV (10,000+ transactions/day, 2h → 15m report generation, 80%+ coverage) may be repeated on the site.
+- Telecom carrier and MDM/UEM provider names as integration targets (for example AT&T, Jamf Pro), because they are named on the public CV.
 
 ## Do not publish
 
-- Internal service, product or repository names, and internal service-to-service topology.
+- Internal service, product or repository names, and internal service-to-service topology (which service routes to which).
 - Names of payment providers, regulators, clients, partners and other third parties (the source documents already anonymise these; keep them anonymous).
 - Internal URLs, hostnames, environments, configuration keys, feature-flag names, credentials.
 - Platform scale (players, requests per minute) and business figures.

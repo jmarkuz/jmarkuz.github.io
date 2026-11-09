@@ -22,7 +22,7 @@ export function ExperienceText() {
           const s = toMonth(c.start);
           const e = endMonth(c.end, nowMonth);
           return (
-            <details key={c.id} className="group border-b border-line last:border-b-0">
+            <details key={c.id} className="group border-b border-line last:border-b-0" open={c.id === "atlaslive"}>
               <summary className="flex cursor-pointer list-none flex-wrap items-baseline gap-x-3 gap-y-0.5 px-4 py-3.5 hover:bg-ink/[0.025] md:px-5">
                 <span aria-hidden className="font-mono text-[11px] text-faint transition-transform group-open:rotate-90">
                   ▸
@@ -41,6 +41,12 @@ export function ExperienceText() {
                   {c.achievements.map((a) => (
                     <li key={a.text} className="relative pl-4 before:absolute before:top-[9px] before:left-0 before:size-1 before:rounded-full before:bg-line-2">
                       <RichText text={a.text} />
+                      {a.detail && (
+                        <span className="text-muted">
+                          {" "}
+                          <RichText text={a.detail} />
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
